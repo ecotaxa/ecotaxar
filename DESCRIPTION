@@ -9,3 +9,9 @@ License: GPL v3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
+Imports:
+	plyr,
+	stringr,
+	data.tree
+Depends:
+	dplyr
