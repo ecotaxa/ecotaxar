@@ -20,8 +20,6 @@ Parse a mapping specification
 \examples{
 d <- data.frame(id=c(1234, 1235), n01=c(12,34), n02=c(125,156))
 mapping <- "n01=area\\nn02=mean\\nn03=stddev"
-
 map_names(d, mapping)
-
 parse_mapping(mapping)
 }
