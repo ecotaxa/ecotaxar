@@ -9,3 +9,7 @@ src_ecotaxa()
 \description{
 Connect to the database of EcoTaxa
 }
+\examples{
+db <- src_ecotaxa()
+db
+}

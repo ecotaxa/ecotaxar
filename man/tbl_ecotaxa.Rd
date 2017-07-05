@@ -12,3 +12,10 @@ tbl_ecotaxa(db)
 \description{
 Connect to EcoTaxa tables
 }
+\examples{
+db <- src_ecotaxa()
+ls()
+tbl_ecotaxa(db)
+ls()
+head(projects)
+}
