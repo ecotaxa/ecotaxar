@@ -9,7 +9,7 @@ get_taxo(db, ids, recursive = FALSE)
 \arguments{
 \item{db}{a connection to the EcoTaxa database (from \code{\link{src_ecotaxa}})}
 
-\item{ids}{vector of numerical ids of classes}
+\item{ids}{vector of numerical ids of taxonomic classes}
 
 \item{recursive}{when \code{TRUE}, extract the full taxonomy, until the root}
 }

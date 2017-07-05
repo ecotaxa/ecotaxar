@@ -1,7 +1,7 @@
 #' Extract a subset of the taxonomy for a set of ids
 #'
-#' @param ids vector of numerical ids of classes
 #' @inheritParams tbl_ecotaxa
+#' @param ids vector of numerical ids of taxonomic classes
 #' @param recursive when \code{TRUE}, extract the full taxonomy, until the root
 get_taxo <- function(db, ids, recursive=FALSE) {
   # reduce to unique taxa
