@@ -17,12 +17,15 @@ Tests wether an id corresponds to a leaf in a taxonomic tree
 \examples{
 db <- src_ecotaxa()
 taxo <- extract_taxo(db, ids=c(100,200))
+taxo
 is_leaf(3, taxo)
 is_leaf(200, taxo)
+is_leaf(c(3, 200), taxo)
 }
 \seealso{
 Other taxonomy-related functions: \code{\link{ancestors}},
   \code{\link{children}}, \code{\link{extract_taxo}},
   \code{\link{is.taxo}}, \code{\link{lineage}},
-  \code{\link{parent}}, \code{\link{taxo_name}}
+  \code{\link{parent}}, \code{\link{taxo_id}},
+  \code{\link{taxo_name}}
 }

@@ -19,6 +19,7 @@ Get the full lineage of a taxon from its id
 \examples{
 db <- src_ecotaxa()
 taxo <- extract_taxo(db, ids=c(100,200))
+taxo
 lineage(200, taxo)
 lineage(c(3, 200), taxo)
 lineage(200, taxo, rooted=T)
@@ -27,5 +28,6 @@ lineage(200, taxo, rooted=T)
 Other taxonomy-related functions: \code{\link{ancestors}},
   \code{\link{children}}, \code{\link{extract_taxo}},
   \code{\link{is.taxo}}, \code{\link{is_leaf}},
-  \code{\link{parent}}, \code{\link{taxo_name}}
+  \code{\link{parent}}, \code{\link{taxo_id}},
+  \code{\link{taxo_name}}
 }

@@ -17,11 +17,14 @@ Get id of the parent of a taxon
 \examples{
 db <- src_ecotaxa()
 taxo <- extract_taxo(db, ids=c(100,200))
+taxo
+parent(3, taxo)
 parent(c(200, 3), taxo)
 }
 \seealso{
 Other taxonomy-related functions: \code{\link{ancestors}},
   \code{\link{children}}, \code{\link{extract_taxo}},
   \code{\link{is.taxo}}, \code{\link{is_leaf}},
-  \code{\link{lineage}}, \code{\link{taxo_name}}
+  \code{\link{lineage}}, \code{\link{taxo_id}},
+  \code{\link{taxo_name}}
 }

@@ -110,7 +110,7 @@ data.tree::as.Node
 #' @export
 #' @rdname is.taxo
 as.Node.taxo <- function(x) {
-  x$pathString <- lineage(x$id, x)
+  x$pathString <- lineage(x$id, x, rooted=TRUE)
   data.tree::as.Node(as.data.frame(x))
 }
 
@@ -126,6 +126,7 @@ as.Node.taxo <- function(x) {
 #' @examples
 #' db <- src_ecotaxa()
 #' taxo <- extract_taxo(db, ids=c(100,200))
+#' taxo
 #' ancestors(200, taxo)
 #' @export
 #' @family taxonomy-related functions
@@ -157,6 +158,7 @@ ancestors <- function(id, taxo, n=Inf) {
 #' @examples
 #' db <- src_ecotaxa()
 #' taxo <- extract_taxo(db, ids=c(100,200))
+#' taxo
 #' children(3, taxo)
 #' @export
 #' @family taxonomy-related functions
@@ -173,6 +175,8 @@ children <- function(id, taxo, n=Inf) {
 #' @examples
 #' db <- src_ecotaxa()
 #' taxo <- extract_taxo(db, ids=c(100,200))
+#' taxo
+#' parent(3, taxo)
 #' parent(c(200, 3), taxo)
 #' @export
 #' @family taxonomy-related functions
@@ -188,8 +192,10 @@ parent <- function(id, taxo) {
 #' @examples
 #' db <- src_ecotaxa()
 #' taxo <- extract_taxo(db, ids=c(100,200))
+#' taxo
 #' is_leaf(3, taxo)
 #' is_leaf(200, taxo)
+#' is_leaf(c(3, 200), taxo)
 #' @export
 #' @family taxonomy-related functions
 is_leaf <- function(id, taxo) {
@@ -204,6 +210,7 @@ is_leaf <- function(id, taxo) {
 #' @examples
 #' db <- src_ecotaxa()
 #' taxo <- extract_taxo(db, ids=c(100,200))
+#' taxo
 #' lineage(200, taxo)
 #' lineage(c(3, 200), taxo)
 #' lineage(200, taxo, rooted=T)
@@ -215,6 +222,7 @@ lineage <- function(ids, taxo, rooted=FALSE) {
     if (rooted) {
       l <- str_c("/#/", l)
     }
+    return(l)
   })
 }
 
@@ -224,6 +232,12 @@ lineage <- function(ids, taxo, rooted=FALSE) {
 #' Get the names of taxa from their ids
 #'
 #' @inheritParams lineage
+#' @examples
+#' db <- src_ecotaxa()
+#' taxo <- extract_taxo(db, ids=c(100,200))
+#' taxo
+#' taxo_name(200, taxo)
+#' taxo_name(1, taxo)
 #' @export
 #' @family taxonomy-related functions
 taxo_name <- function(ids, taxo) {
@@ -235,8 +249,14 @@ taxo_name <- function(ids, taxo) {
 #'
 #' @param names vector of character strings with taxonomic names
 #' @inheritParams taxo_name
+#' @examples
+#' db <- src_ecotaxa()
+#' taxo <- extract_taxo(db, ids=c(100,200))
+#' taxo
+#' taxo_id("Foo", taxo)
+#' taxo_id("Euzebyaceae", taxo)
 #' @export
-#' @rdname taxo_name
+#' @family taxonomy-related functions
 taxo_id <- function(names, taxo) {
   taxo$id[match(names, taxo$name)]
   # TODO deal with synonyms here

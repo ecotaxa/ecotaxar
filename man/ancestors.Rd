@@ -19,11 +19,13 @@ Get the vector of ids of ancestors of a taxon
 \examples{
 db <- src_ecotaxa()
 taxo <- extract_taxo(db, ids=c(100,200))
+taxo
 ancestors(200, taxo)
 }
 \seealso{
 Other taxonomy-related functions: \code{\link{children}},
   \code{\link{extract_taxo}}, \code{\link{is.taxo}},
   \code{\link{is_leaf}}, \code{\link{lineage}},
-  \code{\link{parent}}, \code{\link{taxo_name}}
+  \code{\link{parent}}, \code{\link{taxo_id}},
+  \code{\link{taxo_name}}
 }
