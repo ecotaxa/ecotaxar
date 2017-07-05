@@ -3,7 +3,12 @@
 #' @inheritParams tbl_ecotaxa
 #' @param ids vector of numerical ids of taxonomic classes
 #' @param recursive when \code{TRUE}, extract the full taxonomy, until the root
-get_taxo <- function(db, ids, recursive=TRUE) {
+#'
+#' @examples
+#' db <- src_ecotaxa()
+#' extract_taxo(db, 84000:84003)
+#' extract_taxo(db, 84000:84003, recursive=FALSE)
+extract_taxo <- function(db, ids, recursive=TRUE) {
   # reduce to unique taxa
   ids <- unique(ids)
   # if there is only one taxon, duplicate it for the IN sql command to work
