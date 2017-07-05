@@ -14,4 +14,4 @@ Imports:
 	stringr,
 	data.tree
 Depends:
-	dplyr
+	dplyr (>= 0.7.1)
