@@ -4,27 +4,32 @@
 \alias{is.taxo}
 \alias{as.list.taxo}
 \alias{as.Node.taxo}
-\title{Test if the argument is of class taxo}
+\title{Coerce taxonomy data.frames to various formats}
 \usage{
 is.taxo(x)
 
 \method{as.list}{taxo}(x, ...)
 
-as.Node.taxo(x)
+\method{as.Node}{taxo}(x)
 }
 \arguments{
-\item{x}{an object}
+\item{x}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
 
 \item{...}{passed to other methods}
-
-\item{x}{taxonomy data.frame, of class "taxo" (from \code{\link{get_taxo}})}
-
-\item{x}{taxonomy data.frame, of class "taxo" (from \code{\link{get_taxo}})}
 }
 \description{
-Test if the argument is of class taxo
-
-Convert the taxonomy data.frame into a nested list, for shinyTree
-
-Convert a taxonomy data.frame into a Node object, from package data.tree
+Coerce taxonomy data.frames to various formats
+}
+\examples{
+db <- src_ecotaxa()
+taxo <- extract_taxo(db, c(10,20))
+is.taxo(taxo)
+as.list(taxo)
+as.Node(taxo)
+}
+\seealso{
+Other taxonomy-related functions: \code{\link{ancestors}},
+  \code{\link{children}}, \code{\link{extract_taxo}},
+  \code{\link{is_leaf}}, \code{\link{lineage}},
+  \code{\link{parent}}, \code{\link{taxo_name}}
 }
