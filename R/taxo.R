@@ -11,6 +11,7 @@ is.taxo <- function(x) {
 #' @param x taxonomy data.frame, of class "taxo" (from \code{\link{get_taxo}})
 #' @param ... passed to other methods
 #' @export
+#' @rdname is.taxo
 as.list.taxo <- function(x, ...) {
   # compute the number of direct children
   x$n_direct_children <- plyr::laply(x$id, function(i) {length(children(i, x, 1))-1})
@@ -41,6 +42,7 @@ as.list.taxo <- function(x, ...) {
 #'
 #' @param x taxonomy data.frame, of class "taxo" (from \code{\link{get_taxo}})
 #' @export
+#' @rdname is.taxo
 as.Node.taxo <- function(x) {
   x$pathString <- plyr::laply(x$id, function(i) {
     anc <- ancestors(i, x, n=Inf)

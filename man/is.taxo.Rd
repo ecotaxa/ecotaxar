@@ -2,13 +2,29 @@
 % Please edit documentation in R/taxo.R
 \name{is.taxo}
 \alias{is.taxo}
+\alias{as.list.taxo}
+\alias{as.Node.taxo}
 \title{Test if the argument is of class taxo}
 \usage{
 is.taxo(x)
+
+\method{as.list}{taxo}(x, ...)
+
+as.Node.taxo(x)
 }
 \arguments{
 \item{x}{an object}
+
+\item{...}{passed to other methods}
+
+\item{x}{taxonomy data.frame, of class "taxo" (from \code{\link{get_taxo}})}
+
+\item{x}{taxonomy data.frame, of class "taxo" (from \code{\link{get_taxo}})}
 }
 \description{
 Test if the argument is of class taxo
+
+Convert the taxonomy data.frame into a nested list, for shinyTree
+
+Convert a taxonomy data.frame into a Node object, from package data.tree
 }
