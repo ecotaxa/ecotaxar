@@ -4,7 +4,7 @@
 \alias{get_taxo}
 \title{Extract a subset of the taxonomy for a set of ids}
 \usage{
-get_taxo(db, ids, recursive = FALSE)
+get_taxo(db, ids, recursive = TRUE)
 }
 \arguments{
 \item{db}{a connection to the EcoTaxa database (from \code{\link{src_ecotaxa}})}
