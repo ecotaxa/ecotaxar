@@ -14,5 +14,6 @@ Useful to remove unmapped columns extracted from EcoTaxa, which are all empty
 }
 \examples{
 x <- data.frame(a=c(1,NA), b=NA, c=c(NA, "foo"))
+x
 remove_empty_cols(x)
 }

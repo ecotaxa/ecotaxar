@@ -11,6 +11,7 @@ NULL
 #' @param x a data.frame
 #' @examples
 #' x <- data.frame(a=c(1,NA), b=NA, c=c(NA, "foo"))
+#' x
 #' remove_empty_cols(x)
 #' @export
 remove_empty_cols <- function(x) {
