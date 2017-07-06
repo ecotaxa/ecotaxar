@@ -4,7 +4,7 @@
 \alias{taxo_name}
 \title{Get the names of taxa from their ids}
 \usage{
-taxo_name(ids, taxo, unique = FALSE)
+taxo_name(ids, taxo, unique = FALSE, human_readable = TRUE)
 }
 \arguments{
 \item{ids}{vector of numerical ids of taxonomic classes}
@@ -12,6 +12,8 @@ taxo_name(ids, taxo, unique = FALSE)
 \item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
 
 \item{unique}{force names to be unique by adding the parent name when needed}
+
+\item{human_readable}{when names are made unique and this is TRUE, add the parent name in parentheses after the taxon name (like on EcoTaxa); when FALSE, use `parent name`_`taxon name`.}
 }
 \description{
 Get the names of taxa from their ids

@@ -256,6 +256,7 @@ lineage <- function(ids, taxo, rooted=FALSE) {
 #'
 #' @inheritParams lineage
 #' @param unique force names to be unique by adding the parent name when needed
+#' @param human_readable when names are made unique and this is TRUE, add the parent name in parentheses after the taxon name (like on EcoTaxa); when FALSE, use `parent name`_`taxon name`.
 #' @examples
 #' taxo <- read.csv(text=
 #' "id,parent_id,name
@@ -272,7 +273,7 @@ lineage <- function(ids, taxo, rooted=FALSE) {
 #' taxo_name(3:5, taxo, unique=TRUE)
 #' @export
 #' @family taxonomy-related functions
-taxo_name <- function(ids, taxo, unique=FALSE) {
+taxo_name <- function(ids, taxo, unique=FALSE, human_readable=TRUE) {
   if (unique) {
     # reduce to unique ids to be able to detect duplicated names
     uids <- unique(ids)
@@ -281,7 +282,11 @@ taxo_name <- function(ids, taxo, unique=FALSE) {
 
     # for duplicated names, add the name of the parent in parentheses
     dup_idx <- which(names %in% names[duplicated(names)])
-    names[dup_idx] <- str_c(names[dup_idx], " (", parent_names[dup_idx], ")")
+    if (human_readable) {
+      names[dup_idx] <- str_c(names[dup_idx], " (", parent_names[dup_idx], ")") 
+    } else {
+      names[dup_idx] <- str_c(parent_names[dup_idx], "_", names[dup_idx])
+    }
 
     out <- names[match(ids, uids)]
     # TODO this does not solve the problem of non-unique parent-child couples but it does not seem to exist currently
