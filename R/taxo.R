@@ -255,17 +255,41 @@ lineage <- function(ids, taxo, rooted=FALSE) {
 #' Get the names of taxa from their ids
 #'
 #' @inheritParams lineage
+#' @param unique force names to be unique by adding the parent name when needed
 #' @examples
-#' db <- src_ecotaxa()
-#' taxo <- extract_taxo(db, ids=c(100,200))
-#' taxo
-#' taxo_name(200, taxo)
-#' taxo_name(1, taxo)
+#' taxo <- read.csv(text=
+#' "id,parent_id,name
+#' 1,NA,living
+#' 2,1,fish
+#' 3,1,mollusc
+#' 4,2,egg
+#' 5,3,egg")
+#' taxo <- as.taxo(taxo)
+#' as.Node(taxo)
+#' taxo_name(5, taxo)
+#' taxo_name(1:3, taxo)
+#' taxo_name(3:5, taxo)
+#' taxo_name(3:5, taxo, unique=TRUE)
 #' @export
 #' @family taxonomy-related functions
-taxo_name <- function(ids, taxo) {
-  taxo$name[match(ids, taxo$id)]
-  # TODO add disambiguation here
+taxo_name <- function(ids, taxo, unique=FALSE) {
+  if (unique) {
+    # reduce to unique ids to be able to detect duplicated names
+    uids <- unique(ids)
+    names <- taxo_name(uids, taxo)
+    parent_names <- uids %>% parent(taxo) %>% taxo_name(taxo)
+
+    # for duplicated names, add the name of the parent in parentheses
+    dup_idx <- which(names %in% names[duplicated(names)])
+    names[dup_idx] <- str_c(names[dup_idx], " (", parent_names[dup_idx], ")")
+
+    out <- names[match(ids, uids)]
+    # TODO this does not solve the problem of non-unique parent-child couples but it does not seem to exist currently
+  } else {
+    out <- taxo$name[match(ids, taxo$id)]
+  }
+
+  return(out)
 }
 
 #' Get the ids of taxa from their names

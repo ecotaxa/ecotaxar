@@ -4,22 +4,32 @@
 \alias{taxo_name}
 \title{Get the names of taxa from their ids}
 \usage{
-taxo_name(ids, taxo)
+taxo_name(ids, taxo, unique = FALSE)
 }
 \arguments{
 \item{ids}{vector of numerical ids of taxonomic classes}
 
 \item{taxo}{taxonomy data.frame, with columns `id` and `parent_id` at least, typically from from \code{\link{get_taxo}} with \code{recursive=TRUE}}
+
+\item{unique}{force names to be unique by adding the parent name when needed}
 }
 \description{
 Get the names of taxa from their ids
 }
 \examples{
-db <- src_ecotaxa()
-taxo <- extract_taxo(db, ids=c(100,200))
-taxo
-taxo_name(200, taxo)
-taxo_name(1, taxo)
+taxo <- read.csv(text=
+"id,parent_id,name
+1,NA,living
+2,1,fish
+3,1,mollusc
+4,2,egg
+5,3,egg")
+taxo <- as.taxo(taxo)
+as.Node(taxo)
+taxo_name(5, taxo)
+taxo_name(1:3, taxo)
+taxo_name(3:5, taxo)
+taxo_name(3:5, taxo, unique=TRUE)
 }
 \seealso{
 Other taxonomy-related functions: \code{\link{ancestors}},
