@@ -64,19 +64,41 @@ extract_taxo <- function(db, ids, recursive=TRUE) {
 #' @param ... passed to other methods
 #'
 #' @examples
+#' d <- read.csv(text=
+#' "id,parent_id,name
+#' 1,NA,living
+#' 2,1,fish
+#' 3,1,mollusc
+#' 4,2,egg
+#' 5,3,egg")
+#' is.taxo(d)
+#' d <- as.taxo(d)
+#' is.taxo(d)
+#' as.list(d)
+#' as.Node(d)
+#'
 #' db <- src_ecotaxa()
-#' taxo <- extract_taxo(db, c(10,20))
-#' is.taxo(taxo)
-#' as.list(taxo)
+#' taxo <- extract_taxo(db, c(8000, 20000))
 #' as.Node(taxo)
 #' @export
 #' @family taxonomy-related functions
+as.taxo <- function(x) {
+  if (all(c("id", "parent_id", "name") %in% names(x)) & is.data.frame(x)) {
+    class(x) <- c("taxo", class(x))
+  } else {
+    stop("Need a data.frame with at least columns `id`, `parent_id`, and `name`")
+  }
+  return(x)
+}
+
+#' @export
+#' @rdname as.taxo
 is.taxo <- function(x) {
   "taxo" %in% class(x)
 }
 
 #' @export
-#' @rdname is.taxo
+#' @rdname as.taxo
 as.list.taxo <- function(x, ...) {
   # compute the number of direct children
   x$n_direct_children <- plyr::laply(x$id, function(i) {length(children(i, x, 1))-1})
@@ -108,10 +130,11 @@ as.list.taxo <- function(x, ...) {
 data.tree::as.Node
 
 #' @export
-#' @rdname is.taxo
+#' @rdname as.taxo
 as.Node.taxo <- function(x) {
   x$pathString <- lineage(x$id, x, rooted=TRUE)
-  data.tree::as.Node(as.data.frame(x))
+  class(x) <- "data.frame"
+  data.tree::as.Node(x)
 }
 
 

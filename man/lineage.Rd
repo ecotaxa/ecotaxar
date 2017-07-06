@@ -26,8 +26,8 @@ lineage(200, taxo, rooted=T)
 }
 \seealso{
 Other taxonomy-related functions: \code{\link{ancestors}},
-  \code{\link{children}}, \code{\link{extract_taxo}},
-  \code{\link{is.taxo}}, \code{\link{is_leaf}},
+  \code{\link{as.taxo}}, \code{\link{children}},
+  \code{\link{extract_taxo}}, \code{\link{is_leaf}},
   \code{\link{parent}}, \code{\link{taxo_id}},
   \code{\link{taxo_name}}
 }

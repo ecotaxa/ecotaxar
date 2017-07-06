@@ -23,8 +23,8 @@ taxo
 ancestors(200, taxo)
 }
 \seealso{
-Other taxonomy-related functions: \code{\link{children}},
-  \code{\link{extract_taxo}}, \code{\link{is.taxo}},
+Other taxonomy-related functions: \code{\link{as.taxo}},
+  \code{\link{children}}, \code{\link{extract_taxo}},
   \code{\link{is_leaf}}, \code{\link{lineage}},
   \code{\link{parent}}, \code{\link{taxo_id}},
   \code{\link{taxo_name}}
