@@ -15,7 +15,7 @@ map_names <- function(x, mapping) {
   # reduce mapping to columns that are actually there
   mapping <- mapping[mapping %in% names(x)]
   # rename columns
-  dplyr::rename(x, UQS(mapping))
+  dplyr::rename(x, rlang::UQS(mapping))
 }
 
 #' @export

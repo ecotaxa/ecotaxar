@@ -131,7 +131,7 @@ data.tree::as.Node
 
 #' @export
 #' @rdname as.taxo
-as.Node.taxo <- function(x) {
+as.Node.taxo <- function(x, ...) {
   x$pathString <- lineage(x$id, x, rooted=TRUE)
   class(x) <- "data.frame"
   data.tree::as.Node(x)
@@ -143,13 +143,13 @@ as.Node.taxo <- function(x) {
 #' Get the vector of ids of ancestors of a taxon
 #'
 #' @param id numerical ids of taxonomic classes (typically a single one)
-#' @param taxo taxonomy data.frame, with columns `id` and `parent_id` at least, typically from from \code{\link{get_taxo}} with \code{recursive=TRUE}
+#' @param taxo a taxonomy data.frame, typically from \code{\link{extract_taxo}}
 #' @param n number of levels to look up; n=1 gives the parent, n=2 gives the grand-parent, etc.
 #'
 #' @examples
 #' db <- src_ecotaxa()
 #' taxo <- extract_taxo(db, ids=c(100,200))
-#' taxo
+#' as.Node(taxo)
 #' ancestors(200, taxo)
 #' @export
 #' @family taxonomy-related functions
@@ -187,7 +187,7 @@ ancestors <- function(id, taxo, n=Inf) {
 #' @family taxonomy-related functions
 children <- function(id, taxo, n=Inf) {
   # invert parents and children
-  taxo <- dplyr::rename(taxo, id=parent_id, parent_id=id)
+  taxo <- dplyr::rename(taxo, id="parent_id", parent_id="id")
   # and get ancestors... which are now children
   rev(ancestors(id=id, taxo=taxo, n=n))
 }

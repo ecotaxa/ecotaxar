@@ -9,7 +9,7 @@ children(id, taxo, n = Inf)
 \arguments{
 \item{id}{numerical ids of taxonomic classes (typically a single one)}
 
-\item{taxo}{taxonomy data.frame, with columns `id` and `parent_id` at least, typically from from \code{\link{get_taxo}} with \code{recursive=TRUE}}
+\item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
 
 \item{n}{number of levels to look down; n=1 gives the direct children, n=2 gives grand children (i.e. children of all children), etc.}
 }

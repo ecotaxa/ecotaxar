@@ -9,7 +9,7 @@ taxo_id(names, taxo)
 \arguments{
 \item{names}{vector of character strings with taxonomic names}
 
-\item{taxo}{taxonomy data.frame, with columns `id` and `parent_id` at least, typically from from \code{\link{get_taxo}} with \code{recursive=TRUE}}
+\item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
 }
 \description{
 Get the ids of taxa from their names

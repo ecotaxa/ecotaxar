@@ -13,7 +13,7 @@ is.taxo(x)
 
 \method{as.list}{taxo}(x, ...)
 
-\method{as.Node}{taxo}(x)
+\method{as.Node}{taxo}(x, ...)
 }
 \arguments{
 \item{x}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}

@@ -9,7 +9,7 @@ is_leaf(id, taxo)
 \arguments{
 \item{id}{numerical ids of taxonomic classes (typically a single one)}
 
-\item{taxo}{taxonomy data.frame, with columns `id` and `parent_id` at least, typically from from \code{\link{get_taxo}} with \code{recursive=TRUE}}
+\item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
 }
 \description{
 Tests wether an id corresponds to a leaf in a taxonomic tree

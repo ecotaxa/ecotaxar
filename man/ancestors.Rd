@@ -9,7 +9,7 @@ ancestors(id, taxo, n = Inf)
 \arguments{
 \item{id}{numerical ids of taxonomic classes (typically a single one)}
 
-\item{taxo}{taxonomy data.frame, with columns `id` and `parent_id` at least, typically from from \code{\link{get_taxo}} with \code{recursive=TRUE}}
+\item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
 
 \item{n}{number of levels to look up; n=1 gives the parent, n=2 gives the grand-parent, etc.}
 }
@@ -19,7 +19,7 @@ Get the vector of ids of ancestors of a taxon
 \examples{
 db <- src_ecotaxa()
 taxo <- extract_taxo(db, ids=c(100,200))
-taxo
+as.Node(taxo)
 ancestors(200, taxo)
 }
 \seealso{

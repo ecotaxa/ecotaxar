@@ -9,7 +9,7 @@ taxo_name(ids, taxo, unique = FALSE)
 \arguments{
 \item{ids}{vector of numerical ids of taxonomic classes}
 
-\item{taxo}{taxonomy data.frame, with columns `id` and `parent_id` at least, typically from from \code{\link{get_taxo}} with \code{recursive=TRUE}}
+\item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
 
 \item{unique}{force names to be unique by adding the parent name when needed}
 }

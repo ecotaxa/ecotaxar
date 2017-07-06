@@ -12,6 +12,7 @@ RoxygenNote: 6.0.1
 Imports:
 	plyr,
 	dbplyr,
+	rlang,
 	RPostgreSQL,
 	stringr,
 	data.tree
