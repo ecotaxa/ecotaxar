@@ -4,7 +4,7 @@
 \alias{taxo_name}
 \title{Get the names of taxa from their ids}
 \usage{
-taxo_name(ids, taxo, unique = FALSE, human_readable = TRUE)
+taxo_name(ids, taxo, unique = FALSE, computer_friendly = FALSE)
 }
 \arguments{
 \item{ids}{vector of numerical ids of taxonomic classes}
@@ -13,7 +13,7 @@ taxo_name(ids, taxo, unique = FALSE, human_readable = TRUE)
 
 \item{unique}{force names to be unique by adding the parent name when needed}
 
-\item{human_readable}{when names are made unique and this is TRUE, add the parent name in parentheses after the taxon name (like on EcoTaxa); when FALSE, use `parent name`_`taxon name`.}
+\item{computer_friendly}{when TRUE, the final name is made to contain no spaces or special characters; when FALSE the names are left as is and, when they are made unique, the parent name is added in parentheses after the taxon name (like on EcoTaxa).}
 }
 \description{
 Get the names of taxa from their ids
@@ -29,9 +29,9 @@ taxo <- read.csv(text=
 taxo <- as.taxo(taxo)
 as.Node(taxo)
 taxo_name(5, taxo)
-taxo_name(1:3, taxo)
-taxo_name(3:5, taxo)
-taxo_name(3:5, taxo, unique=TRUE)
+taxo_name(2:5, taxo)
+taxo_name(2:5, taxo, unique=TRUE)
+taxo_name(2:5, taxo, unique=TRUE, computer_friendly=TRUE)
 }
 \seealso{
 Other taxonomy-related functions: \code{\link{ancestors}},

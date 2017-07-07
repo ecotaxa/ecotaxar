@@ -256,7 +256,7 @@ lineage <- function(ids, taxo, rooted=FALSE) {
 #'
 #' @inheritParams lineage
 #' @param unique force names to be unique by adding the parent name when needed
-#' @param human_readable when names are made unique and this is TRUE, add the parent name in parentheses after the taxon name (like on EcoTaxa); when FALSE, use `parent name`_`taxon name`.
+#' @param computer_friendly when TRUE, the final name is made to contain no spaces or special characters; when FALSE the names are left as is and, when they are made unique, the parent name is added in parentheses after the taxon name (like on EcoTaxa).
 #' @examples
 #' taxo <- read.csv(text=
 #' "id,parent_id,name
@@ -268,31 +268,37 @@ lineage <- function(ids, taxo, rooted=FALSE) {
 #' taxo <- as.taxo(taxo)
 #' as.Node(taxo)
 #' taxo_name(5, taxo)
-#' taxo_name(1:3, taxo)
-#' taxo_name(3:5, taxo)
-#' taxo_name(3:5, taxo, unique=TRUE)
+#' taxo_name(2:5, taxo)
+#' taxo_name(2:5, taxo, unique=TRUE)
+#' taxo_name(2:5, taxo, unique=TRUE, computer_friendly=TRUE)
 #' @export
 #' @family taxonomy-related functions
-taxo_name <- function(ids, taxo, unique=FALSE, human_readable=TRUE) {
+taxo_name <- function(ids, taxo, unique=FALSE, computer_friendly=FALSE) {
+  # reduce to unique ids to be faster and able to detect duplicated names
+  uids <- unique(ids)
+
   if (unique) {
-    # reduce to unique ids to be able to detect duplicated names
-    uids <- unique(ids)
     names <- taxo_name(uids, taxo)
     parent_names <- uids %>% parent(taxo) %>% taxo_name(taxo)
 
     # for duplicated names, add the name of the parent in parentheses
     dup_idx <- which(names %in% names[duplicated(names)])
-    if (human_readable) {
-      names[dup_idx] <- str_c(names[dup_idx], " (", parent_names[dup_idx], ")") 
-    } else {
-      names[dup_idx] <- str_c(parent_names[dup_idx], "_", names[dup_idx])
-    }
+    names[dup_idx] <- str_c(names[dup_idx], " (", parent_names[dup_idx], ")")
 
-    out <- names[match(ids, uids)]
     # TODO this does not solve the problem of non-unique parent-child couples but it does not seem to exist currently
   } else {
-    out <- taxo$name[match(ids, taxo$id)]
+    names <- taxo$name[match(uids, taxo$id)]
   }
+
+  if (computer_friendly) {
+    names <- names %>%
+      stringr::str_replace_all("[ \\.\\(\\)]", " ") %>%
+      stringr::str_trim() %>%
+      stringr::str_replace_all(" ", "_")
+  }
+
+  # extract the names of all ids
+  out <- names[match(ids, uids)]
 
   return(out)
 }
