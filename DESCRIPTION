@@ -15,6 +15,7 @@ Imports:
 	rlang,
 	RPostgreSQL,
 	stringr,
-	data.tree
+	data.tree,
+	readr
 Depends:
 	dplyr (>= 0.7.1)
