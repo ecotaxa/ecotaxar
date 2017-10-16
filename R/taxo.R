@@ -240,13 +240,19 @@ is_leaf <- function(id, taxo) {
 #' @export
 #' @family taxonomy-related functions
 lineage <- function(ids, taxo, rooted=FALSE) {
-  sapply(ids, function(id) {
+  uids <- unique(ids)
+  
+  lineages <- sapply(uids, function(id) {
     l <- ancestors(id, taxo, n=Inf) %>% taxo_name(taxo=taxo) %>% str_c(collapse="/")
     if (rooted) {
       l <- str_c("/#/", l)
     }
     return(l)
   })
+  
+  out <- lineages[match(ids, uids)]
+
+  return(out)
 }
 
 
