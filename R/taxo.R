@@ -15,9 +15,7 @@
 #' @export
 extract_taxo <- function(db, ids, recursive=TRUE) {
   # reduce to unique taxa
-  ids <- unique(ids)
-  # if there is only one taxon, duplicate it for the IN sql command to work
-  if (length(ids) == 1) { ids <- rep(ids, 2) }
+  ids <- unique(na.omit(ids))
 
   if (recursive) {
     # get full taxonomy until the root from all taxa
