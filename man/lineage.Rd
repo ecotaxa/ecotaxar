@@ -2,32 +2,32 @@
 % Please edit documentation in R/taxo.R
 \name{lineage}
 \alias{lineage}
-\title{Get the full lineage of a taxon from its id}
+\title{Get the full lineage of a taxon}
 \usage{
-lineage(ids, taxo, rooted = FALSE)
+lineage(id, taxo, rooted = FALSE)
 }
 \arguments{
-\item{ids}{vector of numerical ids of taxonomic classes}
+\item{id}{numerical ids of taxonomic classes (typically a single one)}
 
 \item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
 
 \item{rooted}{when \code{TRUE}, add a root (#) to the tree}
 }
 \description{
-Get the full lineage of a taxon from its id
+Get the full lineage of a taxon
 }
 \examples{
-db <- src_ecotaxa()
-taxo <- extract_taxo(db, ids=c(100,200))
 taxo
-lineage(200, taxo)
-lineage(c(3, 200), taxo)
-lineage(200, taxo, rooted=T)
+lineage(6, taxo)
+lineage(6, taxo, rooted=TRUE)
+lineage(c(6, 7), taxo)
+lineage(NA, taxo)
+lineage(c(6, NA), taxo)
 }
 \seealso{
 Other taxonomy-related functions: \code{\link{ancestors}},
   \code{\link{as.taxo}}, \code{\link{children}},
-  \code{\link{extract_taxo}}, \code{\link{is_leaf}},
-  \code{\link{parent}}, \code{\link{taxo_id}},
-  \code{\link{taxo_name}}
+  \code{\link{descendants}}, \code{\link{extract_taxo}},
+  \code{\link{is_leaf}}, \code{\link{parent}},
+  \code{\link{taxo_id}}, \code{\link{taxo_name}}
 }

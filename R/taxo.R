@@ -138,119 +138,183 @@ as.Node.taxo <- function(x, ...) {
 
 ## Tree traversal ----
 
-#' Get the vector of ids of ancestors of a taxon
+#' Get id of the parent of a taxon
 #'
 #' @param id numerical ids of taxonomic classes (typically a single one)
 #' @param taxo a taxonomy data.frame, typically from \code{\link{extract_taxo}}
-#' @param n number of levels to look up; n=1 gives the parent, n=2 gives the grand-parent, etc.
-#'
 #' @examples
-#' db <- src_ecotaxa()
-#' taxo <- extract_taxo(db, ids=c(100,200))
-#' as.Node(taxo)
-#' ancestors(200, taxo)
+#' taxo
+#' parent(3, taxo)
+#' parent(1:4, taxo)
+#' parent(c(5, NA), taxo)
+#' @export
+#' @family taxonomy-related functions
+parent <- function(id, taxo) {
+  # check
+  unknown_ids <- na.omit(setdiff(id, taxo$id))
+  if (length(unknown_ids) != 0) {
+    stop("Some taxonomic ids are not in the taxonomy: ", stringr::str_c(unknown_ids, collapse=", "))
+  }
+  # get parents, in order
+  taxo$parent_id[match(id, taxo$id)]
+}
+#' @rdname parent
+#' @export
+parents <- parent
+
+#' Get id(s) of the children of a taxon
+#'
+#' @inheritParams parent
+#' @examples
+#' taxo
+#' children(3, taxo)
+#' children(1:4, taxo)
+#' children(c(1:4, NA), taxo)
+#' children(NA, taxo)
+#' @export
+#' @family taxonomy-related functions
+children <- function(id, taxo) {
+  # deal with NAs
+  if (any(is.na(id))) {
+    # record there was at least one
+    children <- NA
+    # remove them because they would be mistaken for the taxo root
+    id <- na.omit(id)
+  } else {
+    children <- c()
+  }
+  # check
+  unknown_ids <- setdiff(id, c(taxo$id, taxo$parent_id))
+  if (length(unknown_ids) != 0) {
+    stop("Some taxonomic ids are not in the taxonomy: ", stringr::str_c(unknown_ids, collapse=", "))
+  }
+  # get children
+  c(children, taxo$id[taxo$parent_id %in% id])
+}
+
+#' Get ids of ancestors of a taxon
+#'
+#' @inheritParams parent
+#' @param n number of levels to look up; n=1 gives the parents, n=2 gives the grand-parents, etc.
+#' @details Even with `n=1` function is different from `[parent()]` because it returns a vector of unique parents for all input `id` values, not necessarily in order.
+#' @examples
+#' taxo
+#' ancestors(6, taxo)
+#' ancestors(5:7, taxo)
+#' ancestors(1, taxo)
+#' ancestors(NA, taxo)
+#' ancestors(6, taxo, n=1)
+#' ancestors(6, taxo, n=2)
+#' ancestors(6, taxo, n=3)
+#' ancestors(6, taxo, n=10)
+#' # NB:
+#' ancestors(5:7, taxo, n=1)
+#' parent(5:7, taxo)
 #' @export
 #' @family taxonomy-related functions
 ancestors <- function(id, taxo, n=Inf) {
-  # checks
-  all_ids <- c(taxo$id, taxo$parent_id)
-  missing_ids <- setdiff(id, all_ids)
-  if ( length(missing_ids) > 0 ) {
-    stop("Some ids could not be found: ", str_c(missing_ids, collapse=", "))
-  }
   # initialise
   ancestors <- c()
-  parent <- id
-  count <- -1
-  while ( !all(is.na(parent)) & count < n) {
-    # add the ancestors
-    ancestors <- c(parent, ancestors)
+  parents <- id
+  count <- 0
+  # loop over levels
+  while ( length(parents) != 0 & count < n) {
     # the new parents are the parents of the current parents (ouch...)
-    parent <- taxo$parent_id[which(taxo$id %in% parent)]
+    parents <- unique(na.omit(parent(parents, taxo)))
+    # add to ancestors
+    ancestors <- c(parents, ancestors)
     count <- count + 1
   }
   return(unique(ancestors))
 }
 
-#' Get the vector of ids of children of a taxon
+#' Get ids of descendants of a taxon
 #'
-#' @inheritParams ancestors
-#' @param n number of levels to look down; n=1 gives the direct children, n=2 gives grand children (i.e. children of all children), etc.
+#' @inheritParams parent
+#' @param @param n number of levels to look down; n=1 gives the direct children, n=2 gives grand-children (i.e. children of all children), etc.
 #' @examples
-#' db <- src_ecotaxa()
-#' taxo <- extract_taxo(db, ids=c(100,200))
 #' taxo
-#' children(3, taxo)
+#' descendants(3, taxo)
+#' descendants(1:3, taxo)
+#' descendants(7, taxo)
+#' descendants(NA, taxo)
+#' descendants(1, taxo, n=1)
+#' descendants(1, taxo, n=2)
+#' descendants(1, taxo, n=3)
+#' descendants(1, taxo, n=10)
 #' @export
 #' @family taxonomy-related functions
-children <- function(id, taxo, n=Inf) {
-  # invert parents and children
-  taxo <- dplyr::rename(taxo, id="parent_id", parent_id="id")
-  # and get ancestors... which are now children
-  rev(ancestors(id=id, taxo=taxo, n=n))
+descendants <- function(id, taxo, n=Inf) {
+  # initialise
+  descendants <- c()
+  children <- id
+  count <- 0
+  # loop over levels
+  while ( length(children) != 0 & count < n) {
+    # the new children are the children of the current children (ouch...)
+    children <- unique(na.omit(children(children, taxo)))
+    # add to ancestors
+    descendants <- c(children, descendants)
+    count <- count + 1
+  }
+  return(unique(descendants))
 }
 
-#' Get id of the parent of a taxon
+#' Tests whether a taxon is a leaf in a taxonomic tree
 #'
-#' @inheritParams ancestors
+#' @inheritParams children
 #' @examples
-#' db <- src_ecotaxa()
-#' taxo <- extract_taxo(db, ids=c(100,200))
-#' taxo
-#' parent(3, taxo)
-#' parent(c(200, 3), taxo)
-#' @export
-#' @family taxonomy-related functions
-parent <- function(id, taxo) {
-  # ancestors(id, taxo, n=1)[1]
-  # or
-  taxo$parent_id[match(id, taxo$id)]
-}
-
-#' Tests wether an id corresponds to a leaf in a taxonomic tree
-#'
-#' @inheritParams ancestors
-#' @examples
-#' db <- src_ecotaxa()
-#' taxo <- extract_taxo(db, ids=c(100,200))
 #' taxo
 #' is_leaf(3, taxo)
-#' is_leaf(200, taxo)
-#' is_leaf(c(3, 200), taxo)
+#' is_leaf(6, taxo)
+#' is_leaf(NA, taxo)
+#' is_leaf(c(5,NA,6,NA), taxo)
 #' @export
 #' @family taxonomy-related functions
 is_leaf <- function(id, taxo) {
-  sapply(id, function(i) {length(children(i, taxo, n=1)) == 1})
+  # reduce to unique ids to speeds things up
+  uid <- unique(id)
+
+  # for each, compute whether it is a leaf
+  leaf_bool <- sapply(uid, function(i) {
+    if (is.na(i)) {
+      NA
+    } else {
+      length(children(i, taxo)) == 0
+    }
+  })
+
+  # match with original ids to output a vector of the correct length
+  leaf_bool[match(id, uid)]
 }
 
-#' Get the full lineage of a taxon from its id
+#' Get the full lineage of a taxon
 #'
-#' @inheritParams extract_taxo
-#' @inheritParams ancestors
+#' @inheritParams parent
 #' @param rooted when \code{TRUE}, add a root (#) to the tree
 #' @examples
-#' db <- src_ecotaxa()
-#' taxo <- extract_taxo(db, ids=c(100,200))
 #' taxo
-#' lineage(200, taxo)
-#' lineage(c(3, 200), taxo)
-#' lineage(200, taxo, rooted=T)
+#' lineage(6, taxo)
+#' lineage(6, taxo, rooted=TRUE)
+#' lineage(c(6, 7), taxo)
+#' lineage(NA, taxo)
+#' lineage(c(6, NA), taxo)
 #' @export
 #' @family taxonomy-related functions
-lineage <- function(ids, taxo, rooted=FALSE) {
-  uids <- unique(ids)
-  
-  lineages <- sapply(uids, function(id) {
-    l <- ancestors(id, taxo, n=Inf) %>% taxo_name(taxo=taxo) %>% str_c(collapse="/")
+lineage <- function(id, taxo, rooted=FALSE) {
+  # reduce to unique ids to speeds things up
+  uid <- unique(id)
+
+  lineages <- sapply(uid, function(i) {
+    # l <- c(ancestors(i, taxo, n=Inf), i) %>% taxo_name(taxo=taxo) %>% stringr::str_c(collapse="/")
     if (rooted) {
-      l <- str_c("/#/", l)
+      l <- stringr::str_c("/#/", l)
     }
     return(l)
   })
-  
-  out <- lineages[match(ids, uids)]
 
-  return(out)
+  # match with original ids to output a vector of the correct length
+  lineages[match(id, uid)]
 }
 
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/taxo.R
 \name{ancestors}
 \alias{ancestors}
-\title{Get the vector of ids of ancestors of a taxon}
+\title{Get ids of ancestors of a taxon}
 \usage{
 ancestors(id, taxo, n = Inf)
 }
@@ -11,21 +11,32 @@ ancestors(id, taxo, n = Inf)
 
 \item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
 
-\item{n}{number of levels to look up; n=1 gives the parent, n=2 gives the grand-parent, etc.}
+\item{n}{number of levels to look up; n=1 gives the parents, n=2 gives the grand-parents, etc.}
 }
 \description{
-Get the vector of ids of ancestors of a taxon
+Get ids of ancestors of a taxon
+}
+\details{
+Even with \code{n=1} function is different from \code{[parent()]} because it returns a vector of unique parents for all input \code{id} values, not necessarily in order.
 }
 \examples{
-db <- src_ecotaxa()
-taxo <- extract_taxo(db, ids=c(100,200))
-as.Node(taxo)
-ancestors(200, taxo)
+taxo
+ancestors(6, taxo)
+ancestors(5:7, taxo)
+ancestors(1, taxo)
+ancestors(NA, taxo)
+ancestors(6, taxo, n=1)
+ancestors(6, taxo, n=2)
+ancestors(6, taxo, n=3)
+ancestors(6, taxo, n=10)
+# NB:
+ancestors(5:7, taxo, n=1)
+parent(5:7, taxo)
 }
 \seealso{
 Other taxonomy-related functions: \code{\link{as.taxo}},
-  \code{\link{children}}, \code{\link{extract_taxo}},
-  \code{\link{is_leaf}}, \code{\link{lineage}},
-  \code{\link{parent}}, \code{\link{taxo_id}},
-  \code{\link{taxo_name}}
+  \code{\link{children}}, \code{\link{descendants}},
+  \code{\link{extract_taxo}}, \code{\link{is_leaf}},
+  \code{\link{lineage}}, \code{\link{parent}},
+  \code{\link{taxo_id}}, \code{\link{taxo_name}}
 }

@@ -2,30 +2,29 @@
 % Please edit documentation in R/taxo.R
 \name{children}
 \alias{children}
-\title{Get the vector of ids of children of a taxon}
+\title{Get id(s) of the children of a taxon}
 \usage{
-children(id, taxo, n = Inf)
+children(id, taxo)
 }
 \arguments{
 \item{id}{numerical ids of taxonomic classes (typically a single one)}
 
 \item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
-
-\item{n}{number of levels to look down; n=1 gives the direct children, n=2 gives grand children (i.e. children of all children), etc.}
 }
 \description{
-Get the vector of ids of children of a taxon
+Get id(s) of the children of a taxon
 }
 \examples{
-db <- src_ecotaxa()
-taxo <- extract_taxo(db, ids=c(100,200))
 taxo
 children(3, taxo)
+children(1:4, taxo)
+children(c(1:4, NA), taxo)
+children(NA, taxo)
 }
 \seealso{
 Other taxonomy-related functions: \code{\link{ancestors}},
-  \code{\link{as.taxo}}, \code{\link{extract_taxo}},
-  \code{\link{is_leaf}}, \code{\link{lineage}},
-  \code{\link{parent}}, \code{\link{taxo_id}},
-  \code{\link{taxo_name}}
+  \code{\link{as.taxo}}, \code{\link{descendants}},
+  \code{\link{extract_taxo}}, \code{\link{is_leaf}},
+  \code{\link{lineage}}, \code{\link{parent}},
+  \code{\link{taxo_id}}, \code{\link{taxo_name}}
 }
