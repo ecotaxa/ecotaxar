@@ -20,7 +20,7 @@ extract_taxo <- function(db, ids, recursive=TRUE) {
 
   # reduce to unique taxa
   ids <- unique(ids)
-  
+
   if (length(ids) == 0) {
     # if all ids are missing, do not extract anything
     taxo <- data.frame(id=NA, parent=NA, name=NA)
