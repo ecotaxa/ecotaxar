@@ -19,19 +19,11 @@ taxo_name(ids, taxo, unique = FALSE, computer_friendly = FALSE)
 Get the names of taxa from their ids
 }
 \examples{
-taxo <- read.csv(text=
-"id,parent_id,name
-1,NA,living
-2,1,fish
-3,1,mollusc
-4,2,egg
-5,3,egg")
-taxo <- as.taxo(taxo)
-as.Node(taxo)
+taxo
 taxo_name(5, taxo)
-taxo_name(2:5, taxo)
-taxo_name(2:5, taxo, unique=TRUE)
-taxo_name(2:5, taxo, unique=TRUE, computer_friendly=TRUE)
+taxo_name(2:6, taxo)
+taxo_name(2:6, taxo, unique=TRUE)
+taxo_name(2:6, taxo, unique=TRUE, computer_friendly=TRUE)
 }
 \seealso{
 Other taxonomy-related functions: \code{\link{ancestors}},

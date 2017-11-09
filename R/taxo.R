@@ -73,14 +73,8 @@ extract_taxo <- function(db, ids, recursive=TRUE) {
 #' @param ... passed to other methods
 #'
 #' @examples
-#' d <- read.csv(text=
-#' "id,parent_id,name
-#' 1,NA,living
-#' 2,1,fish
-#' 3,1,mollusc
-#' 4,2,egg
-#' 5,3,egg")
-#' is.taxo(d)
+#' d <- as.data.frame(taxo)
+#' class(d)
 #' d <- as.taxo(d)
 #' is.taxo(d)
 #' as.list(d)
@@ -269,23 +263,15 @@ lineage <- function(ids, taxo, rooted=FALSE) {
 
 #' Get the names of taxa from their ids
 #'
-#' @inheritParams lineage
+#' @inheritParams parent
 #' @param unique force names to be unique by adding the parent name when needed
 #' @param computer_friendly when TRUE, the final name is made to contain no spaces or special characters; when FALSE the names are left as is and, when they are made unique, the parent name is added in parentheses after the taxon name (like on EcoTaxa).
 #' @examples
-#' taxo <- read.csv(text=
-#' "id,parent_id,name
-#' 1,NA,living
-#' 2,1,fish
-#' 3,1,mollusc
-#' 4,2,egg
-#' 5,3,egg")
-#' taxo <- as.taxo(taxo)
-#' as.Node(taxo)
+#' taxo
 #' taxo_name(5, taxo)
-#' taxo_name(2:5, taxo)
-#' taxo_name(2:5, taxo, unique=TRUE)
-#' taxo_name(2:5, taxo, unique=TRUE, computer_friendly=TRUE)
+#' taxo_name(2:6, taxo)
+#' taxo_name(2:6, taxo, unique=TRUE)
+#' taxo_name(2:6, taxo, unique=TRUE, computer_friendly=TRUE)
 #' @export
 #' @family taxonomy-related functions
 taxo_name <- function(ids, taxo, unique=FALSE, computer_friendly=FALSE) {
@@ -323,11 +309,10 @@ taxo_name <- function(ids, taxo, unique=FALSE, computer_friendly=FALSE) {
 #' @param names vector of character strings with taxonomic names
 #' @inheritParams taxo_name
 #' @examples
-#' db <- src_ecotaxa()
-#' taxo <- extract_taxo(db, ids=c(100,200))
 #' taxo
-#' taxo_id("Foo", taxo)
-#' taxo_id("Euzebyaceae", taxo)
+#' taxo_id("squid", taxo)
+#' taxo_id("foo", taxo)
+#' taxo_id("egg", taxo)
 #' @export
 #' @family taxonomy-related functions
 taxo_id <- function(names, taxo) {

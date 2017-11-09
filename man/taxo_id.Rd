@@ -15,11 +15,10 @@ taxo_id(names, taxo)
 Get the ids of taxa from their names
 }
 \examples{
-db <- src_ecotaxa()
-taxo <- extract_taxo(db, ids=c(100,200))
 taxo
-taxo_id("Foo", taxo)
-taxo_id("Euzebyaceae", taxo)
+taxo_id("squid", taxo)
+taxo_id("foo", taxo)
+taxo_id("egg", taxo)
 }
 \seealso{
 Other taxonomy-related functions: \code{\link{ancestors}},
