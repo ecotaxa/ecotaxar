@@ -24,18 +24,13 @@ is.taxo(x)
 Coerce taxonomy data.frames to various formats
 }
 \examples{
-d <- read.csv(text=
-"id,parent_id,name
-1,NA,living
-2,1,fish
-3,1,mollusc
-4,2,egg
-5,3,egg")
-is.taxo(d)
+d <- as.data.frame(taxo)
+class(d)
 d <- as.taxo(d)
+class(d)
 is.taxo(d)
-as.list(d)
 as.Node(d)
+as.list(d)
 
 db <- src_ecotaxa()
 taxo <- extract_taxo(db, c(8000, 20000))

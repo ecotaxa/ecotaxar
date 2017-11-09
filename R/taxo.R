@@ -76,9 +76,10 @@ extract_taxo <- function(db, ids, recursive=TRUE) {
 #' d <- as.data.frame(taxo)
 #' class(d)
 #' d <- as.taxo(d)
+#' class(d)
 #' is.taxo(d)
-#' as.list(d)
 #' as.Node(d)
+#' as.list(d)
 #'
 #' db <- src_ecotaxa()
 #' taxo <- extract_taxo(db, c(8000, 20000))
