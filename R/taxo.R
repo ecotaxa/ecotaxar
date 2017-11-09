@@ -306,7 +306,7 @@ lineage <- function(id, taxo, rooted=FALSE) {
   uid <- unique(id)
 
   lineages <- sapply(uid, function(i) {
-    # l <- c(ancestors(i, taxo, n=Inf), i) %>% taxo_name(taxo=taxo) %>% stringr::str_c(collapse="/")
+    l <- c(ancestors(i, taxo, n=Inf), i) %>% taxo_name(taxo=taxo) %>% stringr::str_c(collapse="/")
     if (rooted) {
       l <- stringr::str_c("/#/", l)
     }
