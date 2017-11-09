@@ -104,23 +104,17 @@ is.taxo <- function(x) {
 #' @export
 #' @rdname as.taxo
 as.list.taxo <- function(x, ...) {
-  # compute the number of direct children
-  x$n_direct_children <- plyr::laply(x$id, function(i) {length(children(i, x, 1))-1})
-
   # detect the leaves
-  leaves <- filter(x, n_direct_children == 0)
+  leaves <- x$id[is_leaf(x$id, x)]
 
-  # for each leaf, compute the path to the root
-  paths <- plyr::laply(leaves$id, function(i) {
-    anc <- ancestors(i, x)
-    anc <- taxo_name(anc, x)
-    path <- str_c("`", anc, "`", collapse="$")
-    return(path)
-  })
+  # for each leaf, compute the path to the root = the lineage
+  paths <- lineage(leaves, x)
+  # replace separators by $ to recreated list traversal
+  paths <- stringr::str_replace_all(paths, "/", "$")
   # assign an empty string to each leaf, situated correctly in the list of list
   taxo_list <- list()
   for ( p in paths ) {
-    eval(parse(text=str_c("taxo_list$", p," <- ''")))
+    eval(parse(text=stringr::str_c("taxo_list$", p," <- ''")))
   }
 
   # give it a class to do stuff with
