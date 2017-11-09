@@ -4,10 +4,10 @@
 \alias{taxo_name}
 \title{Get the names of taxa from their ids}
 \usage{
-taxo_name(ids, taxo, unique = FALSE, computer_friendly = FALSE)
+taxo_name(id, taxo, unique = FALSE, computer_friendly = FALSE)
 }
 \arguments{
-\item{ids}{vector of numerical ids of taxonomic classes}
+\item{id}{numerical ids of taxonomic classes (typically a single one)}
 
 \item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
 

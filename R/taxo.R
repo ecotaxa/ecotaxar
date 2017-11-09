@@ -333,21 +333,21 @@ lineage <- function(id, taxo, rooted=FALSE) {
 #' taxo_name(2:6, taxo, unique=TRUE, computer_friendly=TRUE)
 #' @export
 #' @family taxonomy-related functions
-taxo_name <- function(ids, taxo, unique=FALSE, computer_friendly=FALSE) {
+taxo_name <- function(id, taxo, unique=FALSE, computer_friendly=FALSE) {
   # reduce to unique ids to be faster and able to detect duplicated names
-  uids <- unique(ids)
+  uid <- unique(id)
 
   if (unique) {
-    names <- taxo_name(uids, taxo)
-    parent_names <- uids %>% parent(taxo) %>% taxo_name(taxo)
+    names <- taxo_name(uid, taxo)
+    parent_names <- uid %>% parent(taxo) %>% taxo_name(taxo)
 
     # for duplicated names, add the name of the parent in parentheses
     dup_idx <- which(names %in% names[duplicated(names)])
-    names[dup_idx] <- str_c(names[dup_idx], " (", parent_names[dup_idx], ")")
+    names[dup_idx] <- stringr::str_c(names[dup_idx], " (", parent_names[dup_idx], ")")
 
     # TODO this does not solve the problem of non-unique parent-child couples but it does not seem to exist currently
   } else {
-    names <- taxo$name[match(uids, taxo$id)]
+    names <- taxo$name[match(uid, taxo$id)]
   }
 
   if (computer_friendly) {
@@ -358,9 +358,7 @@ taxo_name <- function(ids, taxo, unique=FALSE, computer_friendly=FALSE) {
   }
 
   # extract the names of all ids
-  out <- names[match(ids, uids)]
-
-  return(out)
+  names[match(id, uid)]
 }
 
 #' Get the ids of taxa from their names
