@@ -24,7 +24,7 @@ extract_taxo(db, 84000:84003, recursive=FALSE)
 \seealso{
 Other taxonomy-related functions: \code{\link{ancestors}},
   \code{\link{as.taxo}}, \code{\link{children}},
-  \code{\link{is_leaf}}, \code{\link{lineage}},
-  \code{\link{parent}}, \code{\link{taxo_id}},
-  \code{\link{taxo_name}}
+  \code{\link{descendants}}, \code{\link{is_leaf}},
+  \code{\link{lineage}}, \code{\link{parent}},
+  \code{\link{taxo_id}}, \code{\link{taxo_name}}
 }

@@ -28,7 +28,7 @@ taxo_name(2:6, taxo, unique=TRUE, computer_friendly=TRUE)
 \seealso{
 Other taxonomy-related functions: \code{\link{ancestors}},
   \code{\link{as.taxo}}, \code{\link{children}},
-  \code{\link{extract_taxo}}, \code{\link{is_leaf}},
-  \code{\link{lineage}}, \code{\link{parent}},
-  \code{\link{taxo_id}}
+  \code{\link{descendants}}, \code{\link{extract_taxo}},
+  \code{\link{is_leaf}}, \code{\link{lineage}},
+  \code{\link{parent}}, \code{\link{taxo_id}}
 }

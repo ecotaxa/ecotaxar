@@ -38,8 +38,8 @@ as.Node(taxo)
 }
 \seealso{
 Other taxonomy-related functions: \code{\link{ancestors}},
-  \code{\link{children}}, \code{\link{extract_taxo}},
-  \code{\link{is_leaf}}, \code{\link{lineage}},
-  \code{\link{parent}}, \code{\link{taxo_id}},
-  \code{\link{taxo_name}}
+  \code{\link{children}}, \code{\link{descendants}},
+  \code{\link{extract_taxo}}, \code{\link{is_leaf}},
+  \code{\link{lineage}}, \code{\link{parent}},
+  \code{\link{taxo_id}}, \code{\link{taxo_name}}
 }
