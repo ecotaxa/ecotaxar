@@ -13,7 +13,8 @@ map_names <- function(x, mapping) {
   # parse mapping
   mapping <- parse_mapping(mapping)
   # reduce mapping to columns that are actually there
-  mapping <- mapping[mapping %in% names(x)]
+  # NB: names() does not work for db sources; colnames() is required.
+  mapping <- mapping[mapping %in% colnames(x)]
   # rename columns
   dplyr::rename(x, rlang::UQS(mapping))
 }
