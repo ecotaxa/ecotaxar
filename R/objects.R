@@ -130,5 +130,5 @@ extract_objects <- function(db, projids, ..., object_fields=NULL, process_fields
     return(collect(o, n=3))
   }, .progress="text")
 
-  return(as.tibble(d))
+  return(dplyr::as_tibble(d))
 }
