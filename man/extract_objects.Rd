@@ -31,7 +31,7 @@ Get objects and associated metadata
 db <- src_ecotaxa()
 # extract validated objects from a couple projects with some metadata
 d <- extract_objects(
-  db, projid=c(658, 756), classif_qual=="V",
+  db, projids=c(658, 756), classif_qual=="V",
   object_fields=c("area", "major"),
   process_fields="particle_pixel_size_mm",
   acquis_fields="sub_part",
@@ -39,7 +39,7 @@ d <- extract_objects(
 )
 # extract all objects from a project with all object-level metadata
 d <- extract_objects(
-  db, projid=658,
+  db, projids=658,
   object_fields="all"
 )
 }

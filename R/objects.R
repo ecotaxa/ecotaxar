@@ -18,7 +18,7 @@
 #' db <- src_ecotaxa()
 #' # extract validated objects from a couple projects with some metadata
 #' d <- extract_objects(
-#'   db, projid=c(658, 756), classif_qual=="V",
+#'   db, projids=c(658, 756), classif_qual=="V",
 #'   object_fields=c("area", "major"),
 #'   process_fields="particle_pixel_size_mm",
 #'   acquis_fields="sub_part",
@@ -26,7 +26,7 @@
 #' )
 #' # extract all objects from a project with all object-level metadata
 #' d <- extract_objects(
-#'   db, projid=658,
+#'   db, projids=658,
 #'   object_fields="all"
 #' )
 extract_objects <- function(db, projids, ..., object_fields=NULL, process_fields=NULL, acquis_fields=NULL, sample_fields=NULL) {
@@ -77,7 +77,7 @@ extract_objects <- function(db, projids, ..., object_fields=NULL, process_fields
   }
 
   # for each project
-  d <- plyr::ldply(projid, function(id) {
+  d <- plyr::ldply(projids, function(id) {
     proj <- tbl(db, "projects") %>% filter(projid==id) %>% collect()
 
     # extract objects
