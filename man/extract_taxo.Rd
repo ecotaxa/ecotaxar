@@ -7,7 +7,7 @@
 extract_taxo(db, ids, recursive = TRUE)
 }
 \arguments{
-\item{db}{a connection to the EcoTaxa database (from \code{\link{src_ecotaxa}})}
+\item{db}{a connection to an EcoTaxa database (from \code{\link{src_ecotaxa}})}
 
 \item{ids}{vector of numerical ids of taxonomic classes}
 
