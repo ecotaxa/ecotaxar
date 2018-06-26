@@ -86,7 +86,7 @@ extract_objects <- function(db, projids, ..., object_fields=NULL, process_fields
       # filter(projid==id, classif_qual=="V") %>%
       select(
         # select essential metadata
-        projid, sampleid, acquisid, processid, objid, orig_id,
+        projid, sampleid, acquisid, processid, objid, object_orig_id=orig_id,
         object_lat=latitude, object_lon=longitude, object_depth_min=depth_min, object_depth_max=depth_max, object_date=objdate, object_time=objtime,
         object_annotation_id=classif_id, object_annotation_status=classif_qual, object_annotation_person_id=classif_who, object_annotation_datetime=classif_when,
         # select user specified metadata
@@ -94,7 +94,7 @@ extract_objects <- function(db, projids, ..., object_fields=NULL, process_fields
       ) %>%
       # get info on who classified the object
       left_join(
-        select(tbl(db, "users"), id, object_annotation_person_name=name, object_annotation_person_enail=email),
+        select(tbl(db, "users"), id, object_annotation_person_name=name, object_annotation_person_email=email),
         by=c("object_annotation_person_id"="id")
       )
 
