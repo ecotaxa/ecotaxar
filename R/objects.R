@@ -144,5 +144,10 @@ extract_objects <- function(db, projids, ..., object_fields=NULL, process_fields
     return(x)
   }
   d <- mutate_at(d, vars(starts_with("process_"), starts_with("acquis_"), starts_with("sample_")), convert_num)
+
+  # re-arrange columns
+  d <- d[,sort(names(d))]
+  d <- select(d, ends_with("id"), ends_with("_id"), starts_with("object_annotation_"), starts_with("object_"), starts_with("process_"), starts_with("acquis_"), starts_with("sample_"))
+
   return(dplyr::as_tibble(d))
 }
