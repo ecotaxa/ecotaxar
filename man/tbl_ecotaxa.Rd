@@ -7,7 +7,7 @@
 tbl_ecotaxa(db)
 }
 \arguments{
-\item{db}{a connection to the EcoTaxa database (from \code{\link{src_ecotaxa}})}
+\item{db}{a connection to an EcoTaxa database (from \code{\link{src_ecotaxa}})}
 }
 \description{
 Connect to EcoTaxa tables
