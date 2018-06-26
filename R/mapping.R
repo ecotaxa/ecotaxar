@@ -2,7 +2,7 @@
 #'
 #' @rdname mapping
 #' @param x a data.frame with un-mapped columns (in the form "n01", "n02", etc.)
-#' @param mapping an EcoTaxa mapping string
+#' @param mapping an EcoTaxa mapping string (see examples)
 #' @examples
 #' d <- data.frame(id=c(1234, 1235), n01=c(12,34), n02=c(125,156))
 #' mapping <- "n01=area\nn02=mean\nn03=stddev"
