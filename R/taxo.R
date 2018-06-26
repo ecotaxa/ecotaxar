@@ -325,16 +325,14 @@ lineage <- function(id, taxo, rooted=FALSE) {
 #'
 #' @inheritParams parent
 #' @param unique force names to be unique by adding the parent name when needed
-#' @param computer_friendly when TRUE, the final name is made to contain no spaces or special characters; when FALSE the names are left as is and, when they are made unique, the parent name is added in parentheses after the taxon name (like on EcoTaxa).
 #' @examples
 #' data(taxo)
 #' taxo_name(5, taxo)
 #' taxo_name(2:6, taxo)
 #' taxo_name(2:6, taxo, unique=TRUE)
-#' taxo_name(2:6, taxo, unique=TRUE, computer_friendly=TRUE)
 #' @export
 #' @family taxonomy-related functions
-taxo_name <- function(id, taxo, unique=FALSE, computer_friendly=FALSE) {
+taxo_name <- function(id, taxo, unique=FALSE) {
   # reduce to unique ids to be faster and able to detect duplicated names
   uid <- unique(id)
 
@@ -343,19 +341,12 @@ taxo_name <- function(id, taxo, unique=FALSE, computer_friendly=FALSE) {
     parent_names <- uid %>% parent(taxo) %>% taxo_name(taxo)
 
     # for duplicated names, add the name of the parent in parentheses
-    dup_idx <- which(names %in% names[duplicated(names)])
-    names[dup_idx] <- stringr::str_c(names[dup_idx], " (", parent_names[dup_idx], ")")
+    dup_idx <- which(duplicated(names) | duplicated(names, fromLast=T))
+    names[dup_idx] <- stringr::str_c(parent_names[dup_idx], " > ", names[dup_idx])
 
     # TODO this does not solve the problem of non-unique parent-child couples but it does not seem to exist currently
   } else {
     names <- taxo$name[match(uid, taxo$id)]
-  }
-
-  if (computer_friendly) {
-    names <- names %>%
-      stringr::str_replace_all("[ \\.\\(\\)]", " ") %>%
-      stringr::str_trim() %>%
-      stringr::str_replace_all(" ", "_")
   }
 
   # extract the names of all ids
