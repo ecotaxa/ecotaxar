@@ -73,6 +73,7 @@ extract_taxo <- function(db, ids, recursive=TRUE) {
 #' @param ... passed to other methods
 #'
 #' @examples
+#' data(taxo)
 #' d <- as.data.frame(taxo)
 #' class(d)
 #' d <- as.taxo(d)
@@ -143,7 +144,7 @@ as.Node.taxo <- function(x, ...) {
 #' @param id numerical ids of taxonomic classes (typically a single one)
 #' @param taxo a taxonomy data.frame, typically from \code{\link{extract_taxo}}
 #' @examples
-#' taxo
+#' data(taxo)
 #' parent(3, taxo)
 #' parent(1:4, taxo)
 #' parent(c(5, NA), taxo)
@@ -166,7 +167,7 @@ parents <- parent
 #'
 #' @inheritParams parent
 #' @examples
-#' taxo
+#' data(taxo)
 #' children(3, taxo)
 #' children(1:4, taxo)
 #' children(c(1:4, NA), taxo)
@@ -198,7 +199,7 @@ children <- function(id, taxo) {
 #' @param n number of levels to look up; n=1 gives the parents, n=2 gives the grand-parents, etc.
 #' @details Even with `n=1` function is different from `[parent()]` because it returns a vector of unique parents for all input `id` values, not necessarily in order.
 #' @examples
-#' taxo
+#' data(taxo)
 #' ancestors(6, taxo)
 #' ancestors(5:7, taxo)
 #' ancestors(1, taxo)
@@ -233,7 +234,7 @@ ancestors <- function(id, taxo, n=Inf) {
 #' @inheritParams parent
 #' @param @param n number of levels to look down; n=1 gives the direct children, n=2 gives grand-children (i.e. children of all children), etc.
 #' @examples
-#' taxo
+#' data(taxo)
 #' descendants(3, taxo)
 #' descendants(1:3, taxo)
 #' descendants(7, taxo)
@@ -264,7 +265,7 @@ descendants <- function(id, taxo, n=Inf) {
 #'
 #' @inheritParams children
 #' @examples
-#' taxo
+#' data(taxo)
 #' is_leaf(3, taxo)
 #' is_leaf(6, taxo)
 #' is_leaf(NA, taxo)
@@ -293,7 +294,7 @@ is_leaf <- function(id, taxo) {
 #' @inheritParams parent
 #' @param rooted when \code{TRUE}, add a root (#) to the tree
 #' @examples
-#' taxo
+#' daya(taxo)
 #' lineage(6, taxo)
 #' lineage(6, taxo, rooted=TRUE)
 #' lineage(c(6, 7), taxo)
@@ -326,7 +327,7 @@ lineage <- function(id, taxo, rooted=FALSE) {
 #' @param unique force names to be unique by adding the parent name when needed
 #' @param computer_friendly when TRUE, the final name is made to contain no spaces or special characters; when FALSE the names are left as is and, when they are made unique, the parent name is added in parentheses after the taxon name (like on EcoTaxa).
 #' @examples
-#' taxo
+#' data(taxo)
 #' taxo_name(5, taxo)
 #' taxo_name(2:6, taxo)
 #' taxo_name(2:6, taxo, unique=TRUE)

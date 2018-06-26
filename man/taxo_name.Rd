@@ -19,7 +19,7 @@ taxo_name(id, taxo, unique = FALSE, computer_friendly = FALSE)
 Get the names of taxa from their ids
 }
 \examples{
-taxo
+data(taxo)
 taxo_name(5, taxo)
 taxo_name(2:6, taxo)
 taxo_name(2:6, taxo, unique=TRUE)

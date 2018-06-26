@@ -15,7 +15,7 @@ is_leaf(id, taxo)
 Tests whether a taxon is a leaf in a taxonomic tree
 }
 \examples{
-taxo
+data(taxo)
 is_leaf(3, taxo)
 is_leaf(6, taxo)
 is_leaf(NA, taxo)

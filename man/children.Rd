@@ -15,7 +15,7 @@ children(id, taxo)
 Get id(s) of the children of a taxon
 }
 \examples{
-taxo
+data(taxo)
 children(3, taxo)
 children(1:4, taxo)
 children(c(1:4, NA), taxo)

@@ -20,7 +20,7 @@ Get ids of ancestors of a taxon
 Even with \code{n=1} function is different from \code{[parent()]} because it returns a vector of unique parents for all input \code{id} values, not necessarily in order.
 }
 \examples{
-taxo
+data(taxo)
 ancestors(6, taxo)
 ancestors(5:7, taxo)
 ancestors(1, taxo)

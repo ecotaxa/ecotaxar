@@ -17,7 +17,7 @@ lineage(id, taxo, rooted = FALSE)
 Get the full lineage of a taxon
 }
 \examples{
-taxo
+daya(taxo)
 lineage(6, taxo)
 lineage(6, taxo, rooted=TRUE)
 lineage(c(6, 7), taxo)

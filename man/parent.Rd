@@ -18,7 +18,7 @@ parents(id, taxo)
 Get id of the parent of a taxon
 }
 \examples{
-taxo
+data(taxo)
 parent(3, taxo)
 parent(1:4, taxo)
 parent(c(5, NA), taxo)

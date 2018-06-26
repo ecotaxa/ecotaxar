@@ -17,7 +17,7 @@ descendants(id, taxo, n = Inf)
 Get ids of descendants of a taxon
 }
 \examples{
-taxo
+data(taxo)
 descendants(3, taxo)
 descendants(1:3, taxo)
 descendants(7, taxo)

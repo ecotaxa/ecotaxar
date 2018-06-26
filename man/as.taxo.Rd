@@ -24,6 +24,7 @@ is.taxo(x)
 Coerce taxonomy data.frames to various formats
 }
 \examples{
+data(taxo)
 d <- as.data.frame(taxo)
 class(d)
 d <- as.taxo(d)
