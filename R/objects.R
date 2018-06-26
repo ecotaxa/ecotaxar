@@ -130,5 +130,19 @@ extract_objects <- function(db, projids, ..., object_fields=NULL, process_fields
     return(collect(o, n=3))
   }, .progress="text")
 
+  # convert text-as-number columns
+  # Convert a vector of strings storing numbers into actual numbers
+  # Try to be clever about when to do it
+  # @param x input vector
+  convert_num <- function(x) {
+    # try conversion
+    xn <- suppressWarnings(as.numeric(x))
+    # if this does not create more NAs as in the original, then accept the conversion
+    if (sum(is.na(xn))==sum(is.na(x))) {
+      x <- xn
+    }
+    return(x)
+  }
+  d <- mutate_at(d, vars(starts_with("process_"), starts_with("acquis_"), starts_with("sample_")), convert_num)
   return(dplyr::as_tibble(d))
 }
