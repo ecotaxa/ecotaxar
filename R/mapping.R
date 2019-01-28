@@ -9,7 +9,7 @@
 #' map_names(d, mapping)
 #' parse_mapping(mapping)
 #' @export
-#' @importFrom rlang `!!!`
+#' @importFrom rlang !!!
 map_names <- function(x, mapping) {
   # parse mapping
   mapping <- parse_mapping(mapping)
