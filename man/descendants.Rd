@@ -34,3 +34,4 @@ Other taxonomy-related functions: \code{\link{ancestors}},
   \code{\link{lineage}}, \code{\link{parent}},
   \code{\link{taxo_id}}, \code{\link{taxo_name}}
 }
+\concept{taxonomy-related functions}

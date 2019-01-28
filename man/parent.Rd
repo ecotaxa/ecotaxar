@@ -30,3 +30,4 @@ Other taxonomy-related functions: \code{\link{ancestors}},
   \code{\link{is_leaf}}, \code{\link{lineage}},
   \code{\link{taxo_id}}, \code{\link{taxo_name}}
 }
+\concept{taxonomy-related functions}
