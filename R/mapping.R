@@ -9,6 +9,7 @@
 #' map_names(d, mapping)
 #' parse_mapping(mapping)
 #' @export
+#' @importFrom rlang `!!!`
 map_names <- function(x, mapping) {
   # parse mapping
   mapping <- parse_mapping(mapping)
@@ -16,7 +17,7 @@ map_names <- function(x, mapping) {
   # NB: names() does not work for db sources; colnames() is required.
   mapping <- mapping[mapping %in% colnames(x)]
   # rename columns
-  dplyr::rename(x, rlang::UQS(mapping))
+  dplyr::rename(x, !!!(mapping))
 }
 
 #' @export
