@@ -340,9 +340,9 @@ taxo_name <- function(id, taxo, unique=FALSE) {
     names <- taxo_name(uid, taxo)
     parent_names <- uid %>% parent(taxo) %>% taxo_name(taxo)
 
-    # for duplicated names, add the name of the parent in parentheses
+    # for duplicated names, add the name of the parent
     dup_idx <- which(duplicated(names) | duplicated(names, fromLast=T))
-    names[dup_idx] <- stringr::str_c(parent_names[dup_idx], " > ", names[dup_idx])
+    names[dup_idx] <- stringr::str_c(names[dup_idx], "<", parent_names[dup_idx])
 
     # TODO this does not solve the problem of non-unique parent-child couples but it does not seem to exist currently
   } else {
