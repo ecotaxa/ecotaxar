@@ -2,14 +2,19 @@
 % Please edit documentation in R/src_ecotaxa.R
 \name{src_ecotaxa}
 \alias{src_ecotaxa}
-\title{Connect to the database of EcoTaxa}
+\alias{db_disconnect}
+\title{Database connection to EcoTaxa}
 \usage{
 src_ecotaxa()
+
+db_disconnect(x)
 }
 \description{
-Connect to the database of EcoTaxa
+Connect to and disconnect from the EcoTaxa database (in read-only mode).
 }
 \examples{
 db <- src_ecotaxa()
 db
+db_disconnect(db)
+# NB: always disconnect after use. Leaving open connections clobbers the server
 }
