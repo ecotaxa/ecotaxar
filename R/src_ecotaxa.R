@@ -16,5 +16,5 @@ src_ecotaxa <- function() {
 #' @rdname src_ecotaxa
 #' @export
 db_disconnect <- function(x) {
-  RPostgreSQL::dbDisconnect(db$con)
+  RPostgreSQL::dbDisconnect(x$con)
 }
