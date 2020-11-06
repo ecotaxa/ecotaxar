@@ -29,7 +29,7 @@
 #'   db, projids=658,
 #'   object_fields="all"
 #' )
-extract_objects <- function(db, projids, ..., object_fields=NULL, process_fields=NULL, acquis_fields=NULL, sample_fields=NULL) {
+db_objects <- function(db, projids, ..., object_fields=NULL, process_fields=NULL, acquis_fields=NULL, sample_fields=NULL) {
 
   # Reduce a mapping to the specified fields
   # @param mapping EcoTaxa mapping string
@@ -77,7 +77,7 @@ extract_objects <- function(db, projids, ..., object_fields=NULL, process_fields
   }
 
   # for each project
-  d <- plyr::ldply(projids, function(id) {
+  d <- purrr::map_dfr(projids, function(id) {
     proj <- tbl(db, "projects") %>% filter(projid==id) %>% collect()
 
     # extract objects

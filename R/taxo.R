@@ -1,3 +1,12 @@
+#' Minimal, fake taxonomy table
+#'
+#' @format A data frame with 7 rows and 3 variables:
+#' \describe{
+#'   \item{id}{taxon identifier}
+#'   \item{parent_id}{identifier of the parent}
+#'   \item{name}{name of the taxon (i.e. text)}
+#' }
+"taxo"
 
 ## Extraction ----
 
