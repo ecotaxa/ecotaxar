@@ -5,8 +5,8 @@
 #' @param ... additional filters on the objects table. Typical filters are on:
 #' \itemize{
 #' \item \code{classif_qual}: "V" for validated, "P" for predicted, "D" for dubious,
-#' \item \code{classif_id}: numeric id of the taxa of interest,
-#' \item \code{sampleid}: internal numeric identifier of the sample (from the "samples" table).
+#' \item \code{classif_id}: numeric ids of the taxa of interest,
+#' \item \code{sampleid}: internal numeric identifiers of the samples (from the "samples" table).
 #' }
 #' @param *_fields vectors of column names to extract in the objects, sample, acquisitions, and process tables. NULL (the default) extracts nothing, "all" extracts all fields.
 #'
