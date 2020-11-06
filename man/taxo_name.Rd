@@ -23,10 +23,15 @@ taxo_name(2:6, taxo)
 taxo_name(2:6, taxo, unique=TRUE)
 }
 \seealso{
-Other taxonomy-related functions: \code{\link{ancestors}},
-  \code{\link{as.taxo}}, \code{\link{children}},
-  \code{\link{descendants}}, \code{\link{extract_taxo}},
-  \code{\link{is_leaf}}, \code{\link{lineage}},
-  \code{\link{parent}}, \code{\link{taxo_id}}
+Other taxonomy-related functions: 
+\code{\link{ancestors}()},
+\code{\link{as.taxo}()},
+\code{\link{children}()},
+\code{\link{descendants}()},
+\code{\link{extract_taxo}()},
+\code{\link{is_leaf}()},
+\code{\link{lineage}()},
+\code{\link{parent}()},
+\code{\link{taxo_id}()}
 }
 \concept{taxonomy-related functions}

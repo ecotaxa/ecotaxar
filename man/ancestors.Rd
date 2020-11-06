@@ -17,7 +17,7 @@ ancestors(id, taxo, n = Inf)
 Get ids of ancestors of a taxon
 }
 \details{
-Even with \code{n=1} function is different from \code{[parent()]} because it returns a vector of unique parents for all input \code{id} values, not necessarily in order.
+Even with \code{n=1} function is different from \verb{[parent()]} because it returns a vector of unique parents for all input \code{id} values, not necessarily in order.
 }
 \examples{
 data(taxo)
@@ -34,10 +34,15 @@ ancestors(5:7, taxo, n=1)
 parent(5:7, taxo)
 }
 \seealso{
-Other taxonomy-related functions: \code{\link{as.taxo}},
-  \code{\link{children}}, \code{\link{descendants}},
-  \code{\link{extract_taxo}}, \code{\link{is_leaf}},
-  \code{\link{lineage}}, \code{\link{parent}},
-  \code{\link{taxo_id}}, \code{\link{taxo_name}}
+Other taxonomy-related functions: 
+\code{\link{as.taxo}()},
+\code{\link{children}()},
+\code{\link{descendants}()},
+\code{\link{extract_taxo}()},
+\code{\link{is_leaf}()},
+\code{\link{lineage}()},
+\code{\link{parent}()},
+\code{\link{taxo_id}()},
+\code{\link{taxo_name}()}
 }
 \concept{taxonomy-related functions}

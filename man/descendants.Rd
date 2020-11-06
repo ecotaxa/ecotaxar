@@ -28,10 +28,15 @@ descendants(1, taxo, n=3)
 descendants(1, taxo, n=10)
 }
 \seealso{
-Other taxonomy-related functions: \code{\link{ancestors}},
-  \code{\link{as.taxo}}, \code{\link{children}},
-  \code{\link{extract_taxo}}, \code{\link{is_leaf}},
-  \code{\link{lineage}}, \code{\link{parent}},
-  \code{\link{taxo_id}}, \code{\link{taxo_name}}
+Other taxonomy-related functions: 
+\code{\link{ancestors}()},
+\code{\link{as.taxo}()},
+\code{\link{children}()},
+\code{\link{extract_taxo}()},
+\code{\link{is_leaf}()},
+\code{\link{lineage}()},
+\code{\link{parent}()},
+\code{\link{taxo_id}()},
+\code{\link{taxo_name}()}
 }
 \concept{taxonomy-related functions}

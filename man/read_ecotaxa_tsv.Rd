@@ -22,4 +22,6 @@ Read tsv file from EcoTaxa
 \examples{
 d <- read_ecotaxa_tsv(file=system.file("extdata", "export.tsv", package="ecotaxar"))
 glimpse(d)
+d <- read_ecotaxa_tsv(file=system.file("extdata", "import.tsv", package="ecotaxar"))
+glimpse(d)
 }
