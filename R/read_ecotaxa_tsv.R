@@ -7,6 +7,8 @@
 #' @examples
 #' d <- read_ecotaxa_tsv(file=system.file("extdata", "export.tsv", package="ecotaxar"))
 #' glimpse(d)
+#' d <- read_ecotaxa_tsv(file=system.file("extdata", "import.tsv", package="ecotaxar"))
+#' glimpse(d)
 #' @export
 read_ecotaxa_tsv <- function(file, col_types="auto", ...) {
   if (class(col_types) == "col_spec") {
@@ -22,7 +24,7 @@ read_ecotaxa_tsv <- function(file, col_types="auto", ...) {
   } else {
     stop("col_types needs to be a column specification by cols() or \"auto\"")
   }
-  readr::read_tsv(file, col_types=columns, ...)
+  readr::read_tsv(file, col_types=columns, comment="[", ...)
 }
 
 #' @export
