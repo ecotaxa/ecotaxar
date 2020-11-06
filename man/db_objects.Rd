@@ -15,7 +15,7 @@ db_objects(
 )
 }
 \arguments{
-\item{db}{connection to the database, from \code{\link{src_ecotaxa}}.}
+\item{db}{connection to the database, from \verb{[db_connect_ecotaxa()]}.}
 
 \item{projids}{numeric identifiers of projects to extract data from.}
 
@@ -35,7 +35,7 @@ A tibble with columns that are systematically extracted and the additional metad
 Get objects and associated metadata
 }
 \examples{
-db <- src_ecotaxa()
+db <- db_connect_ecotaxa()
 # extract validated objects from a couple projects with some metadata
 d <- extract_objects(
   db, projids=c(658, 756), classif_qual=="V",

@@ -7,13 +7,13 @@
 tbl_ecotaxa(db)
 }
 \arguments{
-\item{db}{a connection to an EcoTaxa database (from \code{\link{src_ecotaxa}})}
+\item{db}{a connection to an EcoTaxa database (from \code{\link{db_connect_ecotaxa}})}
 }
 \description{
 Connect to EcoTaxa tables
 }
 \examples{
-db <- src_ecotaxa()
+db <- db_connect_ecotaxa()
 ls()
 tbl_ecotaxa(db)
 ls()

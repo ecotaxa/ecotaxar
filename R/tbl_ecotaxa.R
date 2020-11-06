@@ -1,8 +1,8 @@
 #' Connect to EcoTaxa tables
 #'
-#' @param db a connection to an EcoTaxa database (from \code{\link{src_ecotaxa}})
+#' @param db a connection to an EcoTaxa database (from \code{\link{db_connect_ecotaxa}})
 #' @examples
-#' db <- src_ecotaxa()
+#' db <- db_connect_ecotaxa()
 #' ls()
 #' tbl_ecotaxa(db)
 #' ls()

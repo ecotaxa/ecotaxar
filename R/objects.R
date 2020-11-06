@@ -1,6 +1,6 @@
 #' Get objects and associated metadata
 #'
-#' @param db connection to the database, from \code{\link{src_ecotaxa}}.
+#' @param db connection to the database, from `[db_connect_ecotaxa()]`.
 #' @param projids numeric identifiers of projects to extract data from.
 #' @param ... additional filters on the objects table. Typical filters are on:
 #' \itemize{
@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#' db <- src_ecotaxa()
+#' db <- db_connect_ecotaxa()
 #' # extract validated objects from a couple projects with some metadata
 #' d <- extract_objects(
 #'   db, projids=c(658, 756), classif_qual=="V",

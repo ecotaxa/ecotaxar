@@ -7,7 +7,7 @@
 extract_taxo(db, ids, recursive = TRUE)
 }
 \arguments{
-\item{db}{a connection to an EcoTaxa database (from \code{\link{src_ecotaxa}})}
+\item{db}{a connection to an EcoTaxa database (from \code{\link{db_connect_ecotaxa}})}
 
 \item{ids}{vector of numerical ids of taxonomic classes}
 
@@ -17,7 +17,7 @@ extract_taxo(db, ids, recursive = TRUE)
 Extract a subset of the taxonomy for a set of ids
 }
 \examples{
-db <- src_ecotaxa()
+db <- db_connect_ecotaxa()
 extract_taxo(db, 84000:84003)
 extract_taxo(db, 84000:84003, recursive=FALSE)
 }

@@ -33,7 +33,7 @@ is.taxo(d)
 as.Node(d)
 as.list(d)
 
-db <- src_ecotaxa()
+db <- db_connect_ecotaxa()
 taxo <- extract_taxo(db, c(8000, 20000))
 as.Node(taxo)
 }

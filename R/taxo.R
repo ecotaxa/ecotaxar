@@ -18,7 +18,7 @@
 #'
 #' @family taxonomy-related functions
 #' @examples
-#' db <- src_ecotaxa()
+#' db <- db_connect_ecotaxa()
 #' extract_taxo(db, 84000:84003)
 #' extract_taxo(db, 84000:84003, recursive=FALSE)
 #' @export
@@ -91,7 +91,7 @@ extract_taxo <- function(db, ids, recursive=TRUE) {
 #' as.Node(d)
 #' as.list(d)
 #'
-#' db <- src_ecotaxa()
+#' db <- db_connect_ecotaxa()
 #' taxo <- extract_taxo(db, c(8000, 20000))
 #' as.Node(taxo)
 #' @export
