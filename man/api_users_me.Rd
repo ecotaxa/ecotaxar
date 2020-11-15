@@ -7,7 +7,17 @@
 api_users_me()
 }
 \value{
-A list with user properties, including id, email and name.
+A list of users or a single user, each containing
+\itemize{
+\item \code{id}: the unique numeric id of this user
+\item \code{email}: email address, as text
+\item \code{name}: name, as text
+\item \code{organisation}: organisation name, as text
+\item \code{active}: whether the user is still active
+\item \code{country}: the country name, as text (but chosen in a consistent list)
+\item \code{usercreationdate}: the date of creation of the user, as text formatted according to the ISO 8601 standard; parse it with \verb{[lubridate::ymd_hms()]}
+\item \code{usercreationreason}: paragraph describing the usage of EcoTaxa made by the user
+}
 }
 \description{
 Get information about the currently authenticated user (i.e. you)
@@ -16,3 +26,9 @@ Get information about the currently authenticated user (i.e. you)
 api_users_me()
 
 }
+\seealso{
+Other users: 
+\code{\link{api_users_search}()},
+\code{\link{api_user}()}
+}
+\concept{users}
