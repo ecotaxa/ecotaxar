@@ -27,3 +27,12 @@ api_handle_response <- function(x) {
   return(out)
 }
 
+apiGET <- function(endpoint) {
+  api_handle_response(
+    httr::GET(
+      url=str_c(api_url(), endpoint),
+      httr::add_headers(Authorization=str_c("Bearer ", api_token()))
+    )
+  )
+}
+
