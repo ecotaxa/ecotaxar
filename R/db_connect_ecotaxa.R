@@ -18,7 +18,7 @@ db_connect_ecotaxa <- function() {
 }
 
 # Define a print method for a connection object
-setMethod(
+methods::setMethod(
   f = "show",
   signature = "PostgreSQLConnection",
   definition = function(object){

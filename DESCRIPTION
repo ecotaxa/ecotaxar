@@ -14,6 +14,7 @@ Imports:
 	dbplyr,
 	rlang,
 	RPostgreSQL,
+	methods,
 	stringr,
 	data.tree,
 	readr,
