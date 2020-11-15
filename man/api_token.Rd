@@ -10,7 +10,7 @@ api_token(path = api_token_path())
 \item{path}{path to the file where the token is stored, defined by \verb{[api_token_path()]}}
 }
 \value{
-The token string
+The token string.
 }
 \description{
 Read EcoTaxa's API token

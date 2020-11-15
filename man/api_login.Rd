@@ -14,7 +14,7 @@ api_login(username, password, cache = TRUE)
 \item{cache}{store the token in a file,}
 }
 \value{
-The token string, invisibly. It also stores to token string in the file defined by \code{\link[=api_token_path]{api_token_path()}} if \code{cache=TRUE}.
+The token string, invisibly. It also stores to token string in the file defined by \code{\link[=api_token_path]{api_token_path()}} if \code{cache=TRUE} (the default).
 }
 \description{
 Log in EcoTaxa

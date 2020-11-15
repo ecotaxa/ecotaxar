@@ -4,7 +4,7 @@
 #' @param password your EcoTaxa password, as text
 #' @param cache store the token in a file,
 #'
-#' @return The token string, invisibly. It also stores to token string in the file defined by [api_token_path()] if `cache=TRUE`.
+#' @return The token string, invisibly. It also stores to token string in the file defined by [api_token_path()] if `cache=TRUE` (the default).
 #' @export
 #'
 #' @examples

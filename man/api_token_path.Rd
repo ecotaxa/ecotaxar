@@ -10,8 +10,8 @@ api_token_path()
 The path to the token file.
 }
 \description{
-This path can be changed with option "ecotaxa.token_path"; by default, it is
-"~/.R/ecotaxa/token"
+This path can be changed with option "ecotaxar.token_path"; by default, it is
+"~/.R/ecotaxar/token"
 }
 \examples{
 # get current token path
