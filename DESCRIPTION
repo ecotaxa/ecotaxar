@@ -18,6 +18,7 @@ Imports:
 	data.tree,
 	readr,
 	purrr,
+	httr
 Depends:
   R (>= 2.10),
 	dplyr (>= 0.7.1)
