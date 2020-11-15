@@ -9,7 +9,7 @@
 #' - `organisation`: organisation name, as text
 #' - `active`: whether the user is still active
 #' - `country`: the country name, as text (but chosen in a consistent list)
-#' - `usercreationdate`: the date of creation of the user, as text formatted according to the ISO 8601 standard; parse it with `[lubridate::ymd_hms()]`
+#' - `usercreationdate`: the date of creation of the user, as text formatted according to the ISO 8601 standard; parse it with [lubridate::ymd_hms()]
 #' - `usercreationreason`: paragraph describing the usage of EcoTaxa made by the user
 #'
 #' @export
