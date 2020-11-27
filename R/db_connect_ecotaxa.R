@@ -10,7 +10,7 @@
 #' @examples
 #' db <- db_connect_ecotaxa()
 #' db
-#' db_disconnect(db)
+#' db_disconnect_ecotaxa(db)
 #' # NB: always disconnect after use. Leaving open connections clobbers the server
 db_connect_ecotaxa <- function() {
   db <- RPostgreSQL::dbConnect("PostgreSQL", host="ecotaxa.obs-vlfr.fr", dbname="ecotaxa", user="zoo", password="z004ecot@x@")
@@ -32,7 +32,7 @@ methods::setMethod(
 #' @rdname db_connect_ecotaxa
 #' @export
 db_disconnect_ecotaxa <- function(x) {
-  RPostgreSQL::dbDisconnect(x$con)
+  RPostgreSQL::dbDisconnect(x)
 }
 
 #' @rdname db_connect_ecotaxa

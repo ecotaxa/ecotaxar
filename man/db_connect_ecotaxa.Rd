@@ -27,6 +27,6 @@ Connect to and disconnect from the EcoTaxa database (in read-only mode).
 \examples{
 db <- db_connect_ecotaxa()
 db
-db_disconnect(db)
+db_disconnect_ecotaxa(db)
 # NB: always disconnect after use. Leaving open connections clobbers the server
 }
