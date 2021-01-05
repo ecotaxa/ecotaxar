@@ -36,3 +36,11 @@ apiGET <- function(endpoint) {
   )
 }
 
+apiPOST <- function(endpoint, body) {
+  api_handle_response(
+    httr::POST(
+      url=str_c(api_url(), endpoint),
+      body=body, encode="json",
+      httr::add_headers(Authorization=str_c("Bearer ", api_token()))
+    )
+  )
