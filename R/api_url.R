@@ -15,7 +15,7 @@ api_url <- function() {
 #'
 #' @export
 api_handle_response <- function(x) {
-  content <- httr::content(x, as="parsed")
+  content <- httr::content(x, as="parsed", simplifyVector=TRUE)
   if (x$status_code != 200) {
     print(x)
     print(content)
@@ -44,3 +44,4 @@ apiPOST <- function(endpoint, body) {
       httr::add_headers(Authorization=str_c("Bearer ", api_token()))
     )
   )
+}
