@@ -94,6 +94,23 @@ format_updates <- function(x) {
 #' api_update_object_set(24473014, list(area=1028, mean=224))
 #' api_update_object_set(24473015, list(area=1118, mean=225))
 api_update_object_set <- function(ids, updates) {
+  # check arguments
+  checkmate::check_integerish(ids)
+  checkmate::check_list(updates)
+  # check that we are not mixing fixed and free fields
+  # get the list of fixed fields from the first object
+  info <- api_object(ids[1])
+  all_fields <- names(info)
+  fixed_fields <- setdiff(all_fields, c("images", "free_columns"))
+  updates_in_free <- setdiff(names(updates), fixed_fields)
+  updates_in_fixed <- intersect(names(updates), fixed_fields)
+  if (length(updates_in_fixed) != 0 &  length(updates_in_free) != 0) {
+    stop("You are mixing fixed and free fields\n",
+         "  fixed: ", stringr::str_c(updates_in_fixed, collapse=", "),"\n",
+         "  free: ", stringr::str_c(updates_in_free, collapse=", "),"\n",
+         "This is currently impossible. Please perform two separate queries.")
+  }
+
   body <- list(
     target_ids=as.list(ids),
     updates=format_updates(updates)
