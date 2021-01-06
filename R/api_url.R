@@ -31,6 +31,7 @@ apiGET <- function(endpoint) {
   api_handle_response(
     httr::GET(
       url=str_c(api_url(), endpoint),
+      config=httr::config(ssl_verifypeer=FALSE),
       httr::add_headers(Authorization=str_c("Bearer ", api_token()))
     )
   )
@@ -40,6 +41,7 @@ apiPOST <- function(endpoint, body) {
   api_handle_response(
     httr::POST(
       url=str_c(api_url(), endpoint),
+      config=httr::config(ssl_verifypeer=FALSE),
       body=body, encode="json",
       httr::add_headers(Authorization=str_c("Bearer ", api_token()))
     )
