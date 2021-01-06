@@ -9,10 +9,10 @@ api_update_object_set(ids, updates)
 \arguments{
 \item{ids}{internal ids of the objects to update}
 
-\item{updates}{named list with the metadata field(s) to update and the updated value(s). Due to a current bug, the list should contain either regular fields only (the ones with a grey background in the object page) or free fields only (the ones uploaded by the user, with a regular white background in the object page), but not a mix of both.}
+\item{updates}{named list with the metadata field(s) to update and the updated value(s). Use \code{\link[=api_object]{api_object()}} to find their names. Due to a current \href{https://github.com/ecotaxa/ecotaxa_dev/issues/556}{bug}, the list should contain either regular fields only or free fields only, but not a mix of both.}
 }
 \value{
-The number of updated items.
+The number of updated objects.
 }
 \description{
 Batch update metadata of objects

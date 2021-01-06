@@ -3,7 +3,7 @@
 #' @param ids internal ids of the samples to update
 #' @param updates named list with the metadata field(s) to update and the updated value(s)
 #'
-#' @return The number of updated items.
+#' @return The number of updated samples.
 #' @export
 #'
 #' @examples
@@ -51,10 +51,10 @@ format_updates <- function(x) {
 
 #' Batch update metadata of objects
 #'
-#' @inherit api_update_sample_set params return
-#'
 #' @param ids internal ids of the objects to update
-#' @param updates named list with the metadata field(s) to update and the updated value(s). Due to a current bug, the list should contain either regular fields only (the ones with a grey background in the object page) or free fields only (the ones uploaded by the user, with a regular white background in the object page), but not a mix of both.
+#' @param updates named list with the metadata field(s) to update and the updated value(s). Use [api_object()] to find their names. Due to a current [bug](https://github.com/ecotaxa/ecotaxa_dev/issues/556), the list should contain either regular fields only or free fields only, but not a mix of both.
+#'
+#' @return The number of updated objects.
 #'
 #' @export
 #'

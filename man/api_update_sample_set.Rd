@@ -12,7 +12,7 @@ api_update_sample_set(ids, updates)
 \item{updates}{named list with the metadata field(s) to update and the updated value(s)}
 }
 \value{
-The number of updated items.
+The number of updated samples.
 }
 \description{
 Batch update metadata of samples
