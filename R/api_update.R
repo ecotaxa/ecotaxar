@@ -59,25 +59,33 @@ format_updates <- function(x) {
 #' @export
 #'
 #' @examples
+#' # get list of possible fields via the `object` endpoint
+#' str(api_object(24473014))
+#'
 #' # change one field of metadata in one object
 #' api_update_object_set(24473014, list(longitude=10))
-#' # check on this object's page
-#' #   https://ecotaxa.obs-vlfr.fr/objectdetails/24473014
+#' # check that the change is effective
+#' api_object(24473014)$longitude
 #'
 #' # change several fields in one object
+#' api_object(24473014)[c("longitude", "latitude")]
 #' api_update_object_set(24473014, list(longitude=0, latitude=0))
+#' api_object(24473014)[c("longitude", "latitude")]
+#'
+#' api_object(24473014)$free_columns[c("area", "mean")]
 #' api_update_object_set(24473014, list(area=1, mean=1))
+#' api_object(24473014)$free_columns[c("area", "mean")]
 #'
 #' # change several fields in several objects
 #' api_update_object_set(c(24473014, 24473015), list(longitude=5, latitude=-2))
-#' # check on these objects' pages
-#' #   https://ecotaxa.obs-vlfr.fr/objectdetails/24473014
-#' #   https://ecotaxa.obs-vlfr.fr/objectdetails/24473015
+#' api_object(24473014)[c("longitude", "latitude")]
+#' api_object(24473015)[c("longitude", "latitude")]
 #'
 #' # change the taxonomic identification
 #' api_update_object_set(24473014, list(classif_id=1, classif_qual="V"))
+#' api_object(24473014)[c("classif_id", "classif_qual")]
 #'
-#' # restore
+#' # restore initial values
 #' api_update_object_set(
 #'   c(24473014, 24473015),
 #'   list(longitude=7.31567, latitude=43.68500)
