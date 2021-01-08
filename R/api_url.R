@@ -1,3 +1,15 @@
+#' Get the base URL of EcoTaxa's API
+#'
+#' @details The url is "https://ecotaxa.obs-vlfr.fr/api/" by default but can be changed with the option `ecotaxa.url`
+#' @export
+#' @examples
+#' api_url()
+#' # set a new default
+#' options(ecotaxa.url="https://ecotaxa.somewhere.edu/api/")
+#' api_url()
+#' # remove the option
+#' options(ecotaxa.url=NULL)
+#' api_url()
 api_url <- function() {
   url <- getOption("ecotaxa.url")
   # TODO look at ways to save this
@@ -9,10 +21,9 @@ api_url <- function() {
 
 #' Handle an API response
 #'
-#' Fail, with information, if the status code is not 200. Return the parsed response content otherwise
+#' Fail, with information, if the status code is not 200. Return the parsed response content otherwise.
 #'
-#' @param x an [httr::response] object
-#'
+#' @param x an [httr::response] object.
 #' @export
 api_handle_response <- function(x) {
   content <- httr::content(x, as="parsed", simplifyVector=TRUE)
@@ -26,6 +37,9 @@ api_handle_response <- function(x) {
   }
   return(out)
 }
+
+
+## Internal shortcuts to the various http methods  ----
 
 apiGET <- function(endpoint) {
   api_handle_response(

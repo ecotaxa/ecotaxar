@@ -2,22 +2,22 @@
 % Please edit documentation in R/api_token.R
 \name{api_token}
 \alias{api_token}
-\title{Read EcoTaxa's API token}
+\title{Read your EcoTaxa token}
 \usage{
 api_token(path = api_token_path())
 }
 \arguments{
-\item{path}{path to the file where the token is stored, defined by \verb{[api_token_path()]}}
+\item{path}{path to the file where the token is stored, defined by \verb{[api_token_path()]}.}
 }
 \value{
 The token string.
 }
 \description{
-Read EcoTaxa's API token
+Read your EcoTaxa token
 }
 \examples{
 # get a token
 api_login(username="ecotaxa.api.user@gmail.com", password="test!")
-# and read it
+# and now read it
 api_token()
 }

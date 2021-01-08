@@ -7,11 +7,11 @@
 api_login(username, password, cache = TRUE)
 }
 \arguments{
-\item{username}{your EcoTaxa username (i.e. email address)}
+\item{username}{your EcoTaxa username (i.e. email address).}
 
-\item{password}{your EcoTaxa password, as text}
+\item{password}{your EcoTaxa password, as text.}
 
-\item{cache}{store the token in a file,}
+\item{cache}{whether to store the token in a file, determined by \code{\link[=api_token_path]{api_token_path()}}. This is \code{TRUE} by default and allows other functions to reuse the token.}
 }
 \value{
 The token string, invisibly. It also stores to token string in the file defined by \code{\link[=api_token_path]{api_token_path()}} if \code{cache=TRUE} (the default).

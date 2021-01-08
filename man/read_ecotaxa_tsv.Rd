@@ -10,11 +10,11 @@ read_ecotaxa_tsv(file, col_types = "auto", ...)
 read_etx(file, col_types = "auto", ...)
 }
 \arguments{
-\item{file}{path to the tsv file}
+\item{file}{path to the tsv file.}
 
-\item{col_types}{a column specification for \code{\link[readr]{read_tsv}}, build with \code{\link[readr]{cols}}, or "auto" for automatic parsing}
+\item{col_types}{a column specification for \code{\link[readr:read_delim]{readr::read_tsv()}}, build with \code{\link[readr:cols]{readr::cols()}}, or "auto" for automatic parsing.}
 
-\item{...}{passed to \code{\link[readr]{read_tsv}}}
+\item{...}{passed to \code{\link[readr]{read_tsv}}.}
 }
 \description{
 Read tsv file from EcoTaxa

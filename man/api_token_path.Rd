@@ -2,7 +2,7 @@
 % Please edit documentation in R/api_token.R
 \name{api_token_path}
 \alias{api_token_path}
-\title{Get the path to to the cached EcoTaxa token}
+\title{Get the path to your cached EcoTaxa token}
 \usage{
 api_token_path()
 }
@@ -11,7 +11,7 @@ The path to the token file.
 }
 \description{
 This path can be changed with option "ecotaxar.token_path"; by default, it is
-"~/.R/ecotaxar/token"
+"~/.R/ecotaxar/token".
 }
 \examples{
 # get current token path

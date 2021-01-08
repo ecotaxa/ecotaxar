@@ -6,17 +6,20 @@
 \usage{
 api_users_search(name)
 }
+\arguments{
+\item{name}{string to look for in the user name}
+}
 \value{
 A list of users or a single user, each containing
 \itemize{
-\item \code{id}: the unique numeric id of this user
-\item \code{email}: email address, as text
-\item \code{name}: name, as text
-\item \code{organisation}: organisation name, as text
-\item \code{active}: whether the user is still active
-\item \code{country}: the country name, as text (but chosen in a consistent list)
-\item \code{usercreationdate}: the date of creation of the user, as text formatted according to the ISO 8601 standard; parse it with \code{\link[lubridate:ymd_hms]{lubridate::ymd_hms()}}
-\item \code{usercreationreason}: paragraph describing the usage of EcoTaxa made by the user
+\item \code{id}: the unique numeric id of this user;
+\item \code{email}: email address, as text;
+\item \code{name}: name, as text;
+\item \code{organisation}: organisation name, as text;
+\item \code{active}: whether the user is still active;
+\item \code{country}: the country name, as text (but chosen in a consistent list);
+\item \code{usercreationdate}: the date of creation of the user, as text formatted according to the ISO 8601 standard; parse it with \code{\link[lubridate:ymd_hms]{lubridate::ymd_hms()}};
+\item \code{usercreationreason}: paragraph describing the usage of EcoTaxa made by the user.
 }
 }
 \description{
@@ -24,7 +27,6 @@ Search for users, by name
 }
 \examples{
 api_users_search("api")
-
 }
 \seealso{
 Other users: 

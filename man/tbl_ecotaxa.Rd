@@ -2,15 +2,18 @@
 % Please edit documentation in R/tbl_ecotaxa.R
 \name{tbl_ecotaxa}
 \alias{tbl_ecotaxa}
-\title{Connect to EcoTaxa tables}
+\title{Connect to common EcoTaxa tables}
 \usage{
 tbl_ecotaxa(db)
 }
 \arguments{
-\item{db}{a connection to an EcoTaxa database (from \code{\link{db_connect_ecotaxa}})}
+\item{db}{a connection to an EcoTaxa database (from \code{\link[=db_connect_ecotaxa]{db_connect_ecotaxa()}}).}
+}
+\value{
+The function returns nothing but creates objects in the global environment that are connections to tables through the \code{\link[dplyr:tbl]{dplyr::tbl()}} function.
 }
 \description{
-Connect to EcoTaxa tables
+Connect to common EcoTaxa tables
 }
 \examples{
 db <- db_connect_ecotaxa()

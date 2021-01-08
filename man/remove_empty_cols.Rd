@@ -7,10 +7,13 @@
 remove_empty_cols(x)
 }
 \arguments{
-\item{x}{a data.frame}
+\item{x}{a data.frame.}
+}
+\value{
+The input data.frame with the columns that are full of NAs removed
 }
 \description{
-Useful to remove unmapped columns extracted from EcoTaxa, which are all empty
+Useful to remove unmapped columns extracted from EcoTaxa, which are all full of NAs.
 }
 \examples{
 x <- data.frame(a=c(1,NA), b=NA, c=c(NA, "foo"))

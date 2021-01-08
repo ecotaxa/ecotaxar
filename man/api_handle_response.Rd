@@ -7,8 +7,8 @@
 api_handle_response(x)
 }
 \arguments{
-\item{x}{an \link[httr:response]{httr::response} object}
+\item{x}{an \link[httr:response]{httr::response} object.}
 }
 \description{
-Fail, with information, if the status code is not 200. Return the parsed response content otherwise
+Fail, with information, if the status code is not 200. Return the parsed response content otherwise.
 }

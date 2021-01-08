@@ -4,17 +4,17 @@
 \alias{api_taxon}
 \title{Get information about a single taxon}
 \usage{
-api_taxon(id)
+api_taxon(taxon_id)
 }
 \arguments{
-\item{id}{internal id of the taxon}
+\item{taxon_id}{internal, numeric id of the taxon.}
 }
 \value{
 A list containing
 \itemize{
-\item \code{id} : the numerical id of the taxon
-\item \code{display_name} : a unique name for the taxon (in which the parent name gets appended if the taxon name is not unique)
-\item \code{lineage} : the vector the taxon name and its ancestors, in order of ascendance.
+\item \code{id} : the numerical id of the taxon,
+\item \code{display_name} : a unique name for the taxon (in which the parent name gets appended if the taxon name is not unique),
+\item \code{lineage} : a vector of the taxon name and its ancestors, in order of ascendance.
 }
 }
 \description{

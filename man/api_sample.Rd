@@ -4,10 +4,10 @@
 \alias{api_sample}
 \title{Get information about a single sample}
 \usage{
-api_sample(id)
+api_sample(sample_id)
 }
 \arguments{
-\item{id}{internal id of the sample}
+\item{sample_id}{internal, numeric id of the sample.}
 }
 \value{
 A nested list with the properties of the sample.
@@ -16,6 +16,6 @@ A nested list with the properties of the sample.
 Get information about a single sample
 }
 \examples{
-info <- api_sample(id=15709)
+info <- api_sample(15709)
 str(info)
 }

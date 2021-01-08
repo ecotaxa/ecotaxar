@@ -7,9 +7,7 @@
 taxo_name(id, taxo, unique = FALSE)
 }
 \arguments{
-\item{id}{numerical ids of taxonomic classes (typically a single one)}
-
-\item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
+\item{taxo}{a taxonomy data.frame, typically from \code{\link[=extract_taxo]{extract_taxo()}}.}
 
 \item{unique}{force names to be unique by adding the parent name when needed}
 }

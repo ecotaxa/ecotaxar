@@ -1,15 +1,16 @@
 #' Parse a mapping specification
 #'
+#' @param x a data.frame with un-mapped columns (in the form "n01", "n02", etc.).
+#' @param mapping an EcoTaxa mapping string (see examples).
+
 #' @rdname mapping
-#' @param x a data.frame with un-mapped columns (in the form "n01", "n02", etc.)
-#' @param mapping an EcoTaxa mapping string (see examples)
+#' @importFrom rlang !!!
+#' @export
 #' @examples
 #' d <- data.frame(id=c(1234, 1235), n01=c(12,34), n02=c(125,156))
 #' mapping <- "n01=area\nn02=mean\nn03=stddev"
 #' map_names(d, mapping)
 #' parse_mapping(mapping)
-#' @export
-#' @importFrom rlang !!!
 map_names <- function(x, mapping) {
   # parse mapping
   mapping <- parse_mapping(mapping)
@@ -20,8 +21,8 @@ map_names <- function(x, mapping) {
   dplyr::rename(x, !!!(mapping))
 }
 
-#' @export
 #' @rdname mapping
+#' @export
 parse_mapping <- function(mapping) {
   # reformat mapping for dplyr::rename
   mapping <- stringr::str_split(mapping, "\n|=")[[1]]

@@ -5,7 +5,7 @@
 \alias{api_get_user_preference}
 \alias{api_set_user_preference}
 \alias{api_del_user_preference}
-\title{Deal with preferences}
+\title{Deal with user preferences}
 \usage{
 api_get_user_preference(project_id, key)
 

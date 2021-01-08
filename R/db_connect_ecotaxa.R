@@ -2,9 +2,9 @@
 #'
 #' Connect to and disconnect from the EcoTaxa database (in read-only mode).
 #'
-#' @param x a database connection created by [db_connect_ecotaxa()]
+#' @param x a database connection created by [db_connect_ecotaxa()].
 #'
-#' @return An object of class
+#' @return An object of class [RPostgreSQL::PostgreSQLConnection-class()].
 #' @export
 #'
 #' @examples

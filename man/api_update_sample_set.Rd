@@ -4,12 +4,12 @@
 \alias{api_update_sample_set}
 \title{Batch update metadata of samples}
 \usage{
-api_update_sample_set(ids, updates)
+api_update_sample_set(sample_ids, updates)
 }
 \arguments{
-\item{ids}{internal ids of the samples to update}
+\item{sample_ids}{internal, numeric ids of the samples.}
 
-\item{updates}{named list with the metadata field(s) to update and the updated value(s)}
+\item{updates}{named list containing the metadata field(s) to update and the updated value(s).}
 }
 \value{
 The number of updated samples.

@@ -1,18 +1,16 @@
 #' Get information about a single object
 #'
-#' @param id internal id of the object
+#' @template param-object_id
 #'
 #' @return A nested list with the properties of the object.
-#'
 #' @export
-#'
 #' @examples
-#' info <- api_object(id=24473014)
+#' info <- api_object(24473014)
 #' str(info, 1)
-api_object <- function(id) {
+api_object <- function(object_id) {
   # check the argument
-  checkmate::assert_scalar(id)
-  checkmate::assert_integerish(id)
+  checkmate::assert_scalar(object_id)
+  checkmate::assert_integerish(object_id)
   # get the info
-  apiGET(str_c("object/", id))
+  apiGET(str_c("object/", object_id))
 }

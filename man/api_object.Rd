@@ -4,10 +4,10 @@
 \alias{api_object}
 \title{Get information about a single object}
 \usage{
-api_object(id)
+api_object(object_id)
 }
 \arguments{
-\item{id}{internal id of the object}
+\item{object_id}{internal, numeric id of the object.}
 }
 \value{
 A nested list with the properties of the object.
@@ -16,6 +16,6 @@ A nested list with the properties of the object.
 Get information about a single object
 }
 \examples{
-info <- api_object(id=24473014)
+info <- api_object(24473014)
 str(info, 1)
 }

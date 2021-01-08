@@ -1,8 +1,8 @@
 #' Read tsv file from EcoTaxa
 #'
-#' @param file path to the tsv file
-#' @param col_types a column specification for \code{\link[readr]{read_tsv}}, build with \code{\link[readr]{cols}}, or "auto" for automatic parsing
-#' @param ... passed to \code{\link[readr]{read_tsv}}
+#' @param file path to the tsv file.
+#' @param col_types a column specification for [readr::read_tsv()], build with [readr::cols()], or "auto" for automatic parsing.
+#' @param ... passed to \code{\link[readr]{read_tsv}}.
 #'
 #' @examples
 #' d <- read_ecotaxa_tsv(file=system.file("extdata", "export.tsv", package="ecotaxar"))
@@ -24,9 +24,10 @@ read_ecotaxa_tsv <- function(file, col_types="auto", ...) {
   } else {
     stop("col_types needs to be a column specification by cols() or \"auto\"")
   }
+  # NB: skip the optional second line of column numeric/text specification
   readr::read_tsv(file, col_types=columns, comment="[", ...)
 }
 
-#' @export
 #' @rdname read_ecotaxa_tsv
+#' @export
 read_etx <- read_ecotaxa_tsv

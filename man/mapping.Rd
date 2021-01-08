@@ -10,9 +10,9 @@ map_names(x, mapping)
 parse_mapping(mapping)
 }
 \arguments{
-\item{x}{a data.frame with un-mapped columns (in the form "n01", "n02", etc.)}
+\item{x}{a data.frame with un-mapped columns (in the form "n01", "n02", etc.).}
 
-\item{mapping}{an EcoTaxa mapping string (see examples)}
+\item{mapping}{an EcoTaxa mapping string (see examples).}
 }
 \description{
 Parse a mapping specification

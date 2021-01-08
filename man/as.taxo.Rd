@@ -16,9 +16,9 @@ is.taxo(x)
 \method{as.Node}{taxo}(x, ...)
 }
 \arguments{
-\item{x}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
+\item{x}{a taxonomy data.frame, typically from \code{\link[=extract_taxo]{extract_taxo()}}.}
 
-\item{...}{passed to other methods}
+\item{...}{passed to other methods.}
 }
 \description{
 Coerce taxonomy data.frames to various formats

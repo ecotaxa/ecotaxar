@@ -1,12 +1,11 @@
 #' Log in EcoTaxa
 #'
-#' @param username your EcoTaxa username (i.e. email address)
-#' @param password your EcoTaxa password, as text
-#' @param cache store the token in a file,
+#' @param username your EcoTaxa username (i.e. email address).
+#' @param password your EcoTaxa password, as text.
+#' @param cache whether to store the token in a file, determined by [api_token_path()]. This is `TRUE` by default and allows other functions to reuse the token.
 #'
 #' @return The token string, invisibly. It also stores to token string in the file defined by [api_token_path()] if `cache=TRUE` (the default).
 #' @export
-#'
 #' @examples
 #' # log in and get a token
 #' token <- api_login(username="ecotaxa.api.user@gmail.com", password="test!")

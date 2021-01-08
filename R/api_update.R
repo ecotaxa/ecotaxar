@@ -1,11 +1,10 @@
 #' Batch update metadata of samples
 #'
-#' @param ids internal ids of the samples to update
-#' @param updates named list with the metadata field(s) to update and the updated value(s)
+#' @template param-sample_ids
+#' @param updates named list containing the metadata field(s) to update and the updated value(s).
 #'
 #' @return The number of updated samples.
 #' @export
-#'
 #' @examples
 #' # change one field of metadata in one sample
 #' api_update_sample_set(15709, list(scan_operator="my test"))
@@ -30,9 +29,9 @@
 #'   c(15709, 15710),
 #'   list(scan_operator="corinne desnos", ship="sagitta", tow_nb=1)
 #' )
-api_update_sample_set <- function(ids, updates) {
+api_update_sample_set <- function(sample_ids, updates) {
   body <- list(
-    target_ids=as.list(ids),
+    target_ids=as.list(sample_ids),
     updates=format_updates(updates)
   )
   # print(jsonlite::toJSON(body, auto_unbox=T))
@@ -51,13 +50,11 @@ format_updates <- function(x) {
 
 #' Batch update metadata of objects
 #'
-#' @param ids internal ids of the objects to update
+#' @template param-object_ids
 #' @param updates named list with the metadata field(s) to update and the updated value(s). Use [api_object()] to find their names. Due to a current [bug](https://github.com/ecotaxa/ecotaxa_dev/issues/556), the list should contain either regular fields only or free fields only, but not a mix of both.
 #'
 #' @return The number of updated objects.
-#'
 #' @export
-#'
 #' @examples
 #' # get list of possible fields via the `object` endpoint
 #' str(api_object(24473014))
@@ -93,13 +90,13 @@ format_updates <- function(x) {
 #' api_update_object_set(24473014, list(classif_id=11509, classif_qual="P"))
 #' api_update_object_set(24473014, list(area=1028, mean=224))
 #' api_update_object_set(24473015, list(area=1118, mean=225))
-api_update_object_set <- function(ids, updates) {
+api_update_object_set <- function(object_ids, updates) {
   # check arguments
-  checkmate::check_integerish(ids)
+  checkmate::check_integerish(object_ids)
   checkmate::check_list(updates)
   # check that we are not mixing fixed and free fields
   # get the list of fixed fields from the first object
-  info <- api_object(ids[1])
+  info <- api_object(object_ids[1])
   all_fields <- names(info)
   fixed_fields <- setdiff(all_fields, c("images", "free_columns"))
   updates_in_free <- setdiff(names(updates), fixed_fields)
@@ -112,7 +109,7 @@ api_update_object_set <- function(ids, updates) {
   }
 
   body <- list(
-    target_ids=as.list(ids),
+    target_ids=as.list(object_ids),
     updates=format_updates(updates)
   )
   # print(jsonlite::toJSON(body, auto_unbox=T))

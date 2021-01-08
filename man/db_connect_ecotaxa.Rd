@@ -16,10 +16,10 @@ src_ecotaxa()
 db_disconnect(x)
 }
 \arguments{
-\item{x}{a database connection created by \code{\link[=db_connect_ecotaxa]{db_connect_ecotaxa()}}}
+\item{x}{a database connection created by \code{\link[=db_connect_ecotaxa]{db_connect_ecotaxa()}}.}
 }
 \value{
-An object of class
+An object of class \code{\link[RPostgreSQL:PostgreSQLConnection-class]{RPostgreSQL::PostgreSQLConnection-class()}}.
 }
 \description{
 Connect to and disconnect from the EcoTaxa database (in read-only mode).

@@ -78,9 +78,11 @@ extract_taxo <- function(db, ids, recursive=TRUE) {
 
 #' Coerce taxonomy data.frames to various formats
 #'
-#' @param x a taxonomy data.frame, typically from \code{\link{extract_taxo}}
-#' @param ... passed to other methods
+#' @param x a taxonomy data.frame, typically from [extract_taxo()].
+#' @param ... passed to other methods.
 #'
+#' @family taxonomy-related functions
+#' @export
 #' @examples
 #' data(taxo)
 #' d <- as.data.frame(taxo)
@@ -94,8 +96,6 @@ extract_taxo <- function(db, ids, recursive=TRUE) {
 #' db <- db_connect_ecotaxa()
 #' taxo <- extract_taxo(db, c(8000, 20000))
 #' as.Node(taxo)
-#' @export
-#' @family taxonomy-related functions
 as.taxo <- function(x) {
   if (all(c("id", "parent_id", "name") %in% names(x)) & is.data.frame(x)) {
     class(x) <- c("taxo", class(x))
@@ -105,14 +105,14 @@ as.taxo <- function(x) {
   return(x)
 }
 
-#' @export
 #' @rdname as.taxo
+#' @export
 is.taxo <- function(x) {
   "taxo" %in% class(x)
 }
 
-#' @export
 #' @rdname as.taxo
+#' @export
 as.list.taxo <- function(x, ...) {
   # detect the leaves
   leaves <- x$id[is_leaf(x$id, x)]
@@ -137,8 +137,8 @@ as.list.taxo <- function(x, ...) {
 #' @export
 data.tree::as.Node
 
-#' @export
 #' @rdname as.taxo
+#' @export
 as.Node.taxo <- function(x, ...) {
   x$pathString <- lineage(x$id, x, rooted=TRUE)
   class(x) <- "data.frame"
@@ -152,13 +152,13 @@ as.Node.taxo <- function(x, ...) {
 #'
 #' @param id numerical ids of taxonomic classes (typically a single one)
 #' @param taxo a taxonomy data.frame, typically from \code{\link{extract_taxo}}
+#' @family taxonomy-related functions
+#' @export
 #' @examples
 #' data(taxo)
 #' parent(3, taxo)
 #' parent(1:4, taxo)
 #' parent(c(5, NA), taxo)
-#' @export
-#' @family taxonomy-related functions
 parent <- function(id, taxo) {
   # check
   unknown_ids <- na.omit(setdiff(id, taxo$id))
@@ -175,14 +175,15 @@ parents <- parent
 #' Get id(s) of the children of a taxon
 #'
 #' @inheritParams parent
+#'
+#' @family taxonomy-related functions
+#' @export
 #' @examples
 #' data(taxo)
 #' children(3, taxo)
 #' children(1:4, taxo)
 #' children(c(1:4, NA), taxo)
 #' children(NA, taxo)
-#' @export
-#' @family taxonomy-related functions
 children <- function(id, taxo) {
   # deal with NAs
   if (any(is.na(id))) {
@@ -242,6 +243,8 @@ ancestors <- function(id, taxo, n=Inf) {
 #'
 #' @inheritParams parent
 #' @param @param n number of levels to look down; n=1 gives the direct children, n=2 gives grand-children (i.e. children of all children), etc.
+#' @family taxonomy-related functions
+#' @export
 #' @examples
 #' data(taxo)
 #' descendants(3, taxo)
@@ -252,8 +255,6 @@ ancestors <- function(id, taxo, n=Inf) {
 #' descendants(1, taxo, n=2)
 #' descendants(1, taxo, n=3)
 #' descendants(1, taxo, n=10)
-#' @export
-#' @family taxonomy-related functions
 descendants <- function(id, taxo, n=Inf) {
   # initialise
   descendants <- c()
@@ -273,14 +274,14 @@ descendants <- function(id, taxo, n=Inf) {
 #' Tests whether a taxon is a leaf in a taxonomic tree
 #'
 #' @inheritParams children
+#' @family taxonomy-related functions
+#' @export
 #' @examples
 #' data(taxo)
 #' is_leaf(3, taxo)
 #' is_leaf(6, taxo)
 #' is_leaf(NA, taxo)
 #' is_leaf(c(5,NA,6,NA), taxo)
-#' @export
-#' @family taxonomy-related functions
 is_leaf <- function(id, taxo) {
   # reduce to unique ids to speeds things up
   uid <- unique(id)

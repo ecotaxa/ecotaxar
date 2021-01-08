@@ -2,29 +2,31 @@
 % Please edit documentation in R/api_users.R
 \name{api_user}
 \alias{api_user}
-\title{Get information for a user, by id}
+\title{Get information about a single user, by id}
 \usage{
-api_user(id)
+api_user(user_id)
+}
+\arguments{
+\item{user_id}{internal, numeric id of the user.}
 }
 \value{
 A list of users or a single user, each containing
 \itemize{
-\item \code{id}: the unique numeric id of this user
-\item \code{email}: email address, as text
-\item \code{name}: name, as text
-\item \code{organisation}: organisation name, as text
-\item \code{active}: whether the user is still active
-\item \code{country}: the country name, as text (but chosen in a consistent list)
-\item \code{usercreationdate}: the date of creation of the user, as text formatted according to the ISO 8601 standard; parse it with \code{\link[lubridate:ymd_hms]{lubridate::ymd_hms()}}
-\item \code{usercreationreason}: paragraph describing the usage of EcoTaxa made by the user
+\item \code{id}: the unique numeric id of this user;
+\item \code{email}: email address, as text;
+\item \code{name}: name, as text;
+\item \code{organisation}: organisation name, as text;
+\item \code{active}: whether the user is still active;
+\item \code{country}: the country name, as text (but chosen in a consistent list);
+\item \code{usercreationdate}: the date of creation of the user, as text formatted according to the ISO 8601 standard; parse it with \code{\link[lubridate:ymd_hms]{lubridate::ymd_hms()}};
+\item \code{usercreationreason}: paragraph describing the usage of EcoTaxa made by the user.
 }
 }
 \description{
-Get information for a user, by id
+Get information about a single user, by id
 }
 \examples{
 api_user(993)
-
 }
 \seealso{
 Other users: 

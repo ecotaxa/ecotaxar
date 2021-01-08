@@ -4,14 +4,14 @@
 \alias{extract_taxo}
 \title{Extract a subset of the taxonomy for a set of ids}
 \usage{
-extract_taxo(db, ids, recursive = TRUE)
+extract_taxo(db, taxon_ids, recursive = TRUE)
 }
 \arguments{
-\item{db}{a connection to an EcoTaxa database (from \code{\link{db_connect_ecotaxa}})}
+\item{db}{a connection to an EcoTaxa database (from \code{\link[=db_connect_ecotaxa]{db_connect_ecotaxa()}}).}
 
-\item{ids}{vector of numerical ids of taxonomic classes}
+\item{taxon_ids}{internal, numeric ids of the taxa.}
 
-\item{recursive}{when \code{TRUE}, extract the full taxonomy, until the root}
+\item{recursive}{when \code{TRUE}, extract the full taxonomy, until the root.}
 }
 \description{
 Extract a subset of the taxonomy for a set of ids
