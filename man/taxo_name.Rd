@@ -4,21 +4,26 @@
 \alias{taxo_name}
 \title{Get the names of taxa from their ids}
 \usage{
-taxo_name(id, taxo, unique = FALSE)
+taxo_name(taxon_ids, taxo, unique = FALSE)
 }
 \arguments{
+\item{taxon_ids}{internal, numeric ids of the taxa.}
+
 \item{taxo}{a taxonomy data.frame, typically from \code{\link[=extract_taxo]{extract_taxo()}}.}
 
-\item{unique}{force names to be unique by adding the parent name when needed}
+\item{unique}{force names to be unique by adding the parent name when needed.}
+}
+\value{
+A vector names, one for each element of \code{taxon_ids}.
 }
 \description{
 Get the names of taxa from their ids
 }
 \examples{
-data(taxo)
+print(as.Node(taxo), "id")
 taxo_name(5, taxo)
-taxo_name(2:6, taxo)
-taxo_name(2:6, taxo, unique=TRUE)
+taxo_name(2:7, taxo)
+taxo_name(2:7, taxo, unique=TRUE)
 }
 \seealso{
 Other taxonomy-related functions: 

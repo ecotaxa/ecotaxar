@@ -2,36 +2,39 @@
 % Please edit documentation in R/taxo.R
 \name{ancestors}
 \alias{ancestors}
-\title{Get ids of ancestors of a taxon}
+\title{Get the ids of all ancestors of some taxa}
 \usage{
-ancestors(id, taxo, n = Inf)
+ancestors(taxon_ids, taxo, n = Inf)
 }
 \arguments{
-\item{id}{numerical ids of taxonomic classes (typically a single one)}
+\item{taxon_ids}{internal, numeric ids of the taxa.}
 
-\item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
+\item{taxo}{a taxonomy data.frame, typically from \code{\link[=extract_taxo]{extract_taxo()}}.}
 
-\item{n}{number of levels to look up; n=1 gives the parents, n=2 gives the grand-parents, etc.}
+\item{n}{maximum number of levels to look up; n=1 gives the parents, n=2 gives the parents and the grand-parents, etc.}
+}
+\value{
+A vector of taxonomic ids containing the input \code{taxon_ids} and all their ancestors. With a single taxon in \code{taxon_ids}, the ancestors are in ordered from the taxon to the root of the tree: they define the lineage. When \code{taxon_ids} contains multiple taxa, the order is non-trivial.
 }
 \description{
-Get ids of ancestors of a taxon
+Get the ids of all ancestors of some taxa
 }
 \details{
-Even with \code{n=1} function is different from \verb{[parent()]} because it returns a vector of unique parents for all input \code{id} values, not necessarily in order.
+Even with \code{n=1}, the function is different from \code{\link[=parent]{parent()}} because it returns all unique parents for all elements of \code{taxon_ids}, not one parent per element.
 }
 \examples{
-data(taxo)
-ancestors(6, taxo)
-ancestors(5:7, taxo)
+print(as.Node(taxo), "id")
+ancestors(5, taxo)
 ancestors(1, taxo)
 ancestors(NA, taxo)
+ancestors(1:7, taxo)
 ancestors(6, taxo, n=1)
 ancestors(6, taxo, n=2)
 ancestors(6, taxo, n=3)
 ancestors(6, taxo, n=10)
 # NB:
-ancestors(5:7, taxo, n=1)
-parent(5:7, taxo)
+ancestors(5:6, taxo, n=1)
+parent(5:6, taxo)
 }
 \seealso{
 Other taxonomy-related functions: 

@@ -2,24 +2,32 @@
 % Please edit documentation in R/taxo.R
 \name{children}
 \alias{children}
-\title{Get id(s) of the children of a taxon}
+\title{Get ids of the children of some taxa}
 \usage{
-children(id, taxo)
+children(taxon_ids, taxo, simplify = TRUE)
 }
 \arguments{
-\item{id}{numerical ids of taxonomic classes (typically a single one)}
+\item{taxon_ids}{internal, numeric ids of the taxa.}
 
-\item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
+\item{taxo}{a taxonomy data.frame, typically from \code{\link[=extract_taxo]{extract_taxo()}}.}
+
+\item{simplify}{when \code{taxon_ids} contains only one taxon and \code{simplify} is \code{TRUE}, return the vector of ids of the children directly, not a list of length one.}
+}
+\value{
+A list of vectors of taxon ids, as long as the input, containing the ids of the children of each element in \code{taxon_ids}.
 }
 \description{
-Get id(s) of the children of a taxon
+Get ids of the children of some taxa
+}
+\details{
+The function works per taxon but is vectorised over \code{taxon_ids}.
 }
 \examples{
-data(taxo)
+print(as.Node(taxo), "id")
 children(3, taxo)
 children(1:4, taxo)
-children(c(1:4, NA), taxo)
-children(NA, taxo)
+children(c(5, NA), taxo)
+\dontrun{ children(12, taxo) }
 }
 \seealso{
 Other taxonomy-related functions: 

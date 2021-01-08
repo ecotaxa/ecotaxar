@@ -2,21 +2,21 @@
 % Please edit documentation in R/taxo.R
 \name{is_leaf}
 \alias{is_leaf}
-\title{Tests whether a taxon is a leaf in a taxonomic tree}
+\title{Tests whether taxa are leaves in a taxonomic tree}
 \usage{
-is_leaf(id, taxo)
+is_leaf(taxon_ids, taxo)
 }
 \arguments{
-\item{id}{numerical ids of taxonomic classes (typically a single one)}
+\item{taxon_ids}{internal, numeric ids of the taxa.}
 
-\item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
+\item{taxo}{a taxonomy data.frame, typically from \code{\link[=extract_taxo]{extract_taxo()}}.}
 }
 \description{
-Tests whether a taxon is a leaf in a taxonomic tree
+Tests whether taxa are leaves in a taxonomic tree
 }
 \examples{
-data(taxo)
-is_leaf(3, taxo)
+print(as.Node(taxo), "id")
+is_leaf(5, taxo)
 is_leaf(6, taxo)
 is_leaf(NA, taxo)
 is_leaf(c(5,NA,6,NA), taxo)

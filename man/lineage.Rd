@@ -4,20 +4,23 @@
 \alias{lineage}
 \title{Get the full lineage of a taxon}
 \usage{
-lineage(id, taxo, rooted = FALSE)
+lineage(taxon_ids, taxo, rooted = FALSE)
 }
 \arguments{
-\item{id}{numerical ids of taxonomic classes (typically a single one)}
+\item{taxon_ids}{internal, numeric ids of the taxa.}
 
-\item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
+\item{taxo}{a taxonomy data.frame, typically from \code{\link[=extract_taxo]{extract_taxo()}}.}
 
-\item{rooted}{when \code{TRUE}, add a root (#) to the tree}
+\item{rooted}{when \code{TRUE}, add a root (#) to the lineage path.}
+}
+\value{
+A vector of strings containing the lineage for each element of \code{taxon_ids}.
 }
 \description{
 Get the full lineage of a taxon
 }
 \examples{
-daya(taxo)
+print(as.Node(taxo), "id")
 lineage(6, taxo)
 lineage(6, taxo, rooted=TRUE)
 lineage(c(6, 7), taxo)

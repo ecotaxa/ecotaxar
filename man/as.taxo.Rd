@@ -5,7 +5,7 @@
 \alias{is.taxo}
 \alias{as.list.taxo}
 \alias{as.Node.taxo}
-\title{Coerce taxonomy data.frames to various formats}
+\title{Coerce a taxonomy data.frame to various formats}
 \usage{
 as.taxo(x)
 
@@ -21,21 +21,34 @@ is.taxo(x)
 \item{...}{passed to other methods.}
 }
 \description{
-Coerce taxonomy data.frames to various formats
+Coerce a taxonomy data.frame to various formats
+}
+\details{
+A taxonomy data.frame is just a regular data.frame with columns \code{id}, \code{parent_id}, and \code{name}. The links between the \code{id} and \code{parent_id} define the taxonomic hierarchy.
+It can be converted into an actual tree using \code{\link[data.tree:as.Node]{data.tree::as.Node()}} and into a nested list.
 }
 \examples{
-data(taxo)
-d <- as.data.frame(taxo)
-class(d)
-d <- as.taxo(d)
-class(d)
-is.taxo(d)
-as.Node(d)
-as.list(d)
+taxo
+as.Node(taxo)
+print(as.Node(taxo), "id", "parent_id")
+as.list(taxo)
 
+# transforming into a taxonomy data.frame is just a mater of adding a class
+df <- taxo
+class(df)
+is.taxo(df)
+df <- as.data.frame(df)
+class(df)
+is.taxo(df)
+df <- as.taxo(df)
+class(df)
+is.taxo(df)
+
+\dontrun{
 db <- db_connect_ecotaxa()
 taxo <- extract_taxo(db, c(8000, 20000))
 as.Node(taxo)
+}
 }
 \seealso{
 Other taxonomy-related functions: 

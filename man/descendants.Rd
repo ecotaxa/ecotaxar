@@ -2,30 +2,40 @@
 % Please edit documentation in R/taxo.R
 \name{descendants}
 \alias{descendants}
-\title{Get ids of descendants of a taxon}
+\title{Get ids of descendants of some taxa}
 \usage{
-descendants(id, taxo, n = Inf)
+descendants(taxon_ids, taxo, n = Inf)
 }
 \arguments{
-\item{id}{numerical ids of taxonomic classes (typically a single one)}
+\item{taxon_ids}{internal, numeric ids of the taxa.}
 
-\item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
+\item{taxo}{a taxonomy data.frame, typically from \code{\link[=extract_taxo]{extract_taxo()}}.}
 
-\item{@param}{n number of levels to look down; n=1 gives the direct children, n=2 gives grand-children (i.e. children of all children), etc.}
+\item{n}{maximum number of levels to look down; n=1 gives the direct children, n=2 gives children and grand-children, etc.}
+}
+\value{
+A vector of taxonomic ids containing the input \code{taxon_ids} and all their descendants.
 }
 \description{
-Get ids of descendants of a taxon
+Get ids of descendants of some taxa
+}
+\details{
+Even with \code{n=1}, the function is different from \code{\link[=children]{children()}} because it returns all unique children for all elements of \code{taxon_ids}, not one vector of children per element.
 }
 \examples{
-data(taxo)
+print(as.Node(taxo), "id")
 descendants(3, taxo)
-descendants(1:3, taxo)
+descendants(1, taxo)
+descendants(c(2,5), taxo)
 descendants(7, taxo)
 descendants(NA, taxo)
 descendants(1, taxo, n=1)
 descendants(1, taxo, n=2)
 descendants(1, taxo, n=3)
 descendants(1, taxo, n=10)
+# NB:
+descendants(5:6, taxo, n=1)
+children(5:6, taxo)
 }
 \seealso{
 Other taxonomy-related functions: 

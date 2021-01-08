@@ -4,12 +4,15 @@
 \alias{taxo_id}
 \title{Get the ids of taxa from their names}
 \usage{
-taxo_id(names, taxo)
+taxo_id(taxon_names, taxo)
 }
 \arguments{
-\item{names}{vector of character strings with taxonomic names}
+\item{taxon_names}{vector of character strings with taxonomic names}
 
 \item{taxo}{a taxonomy data.frame, typically from \code{\link[=extract_taxo]{extract_taxo()}}.}
+}
+\value{
+A vector ids, one for each element of \code{taxon_names}. Currently, this does not disambiguate between taxa with the same name and just returns the id of the first match in the taxonomy.
 }
 \description{
 Get the ids of taxa from their names
@@ -18,6 +21,7 @@ Get the ids of taxa from their names
 taxo
 taxo_id("squid", taxo)
 taxo_id("foo", taxo)
+NB:
 taxo_id("egg", taxo)
 }
 \seealso{

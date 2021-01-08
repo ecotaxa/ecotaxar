@@ -3,25 +3,32 @@
 \name{parent}
 \alias{parent}
 \alias{parents}
-\title{Get id of the parent of a taxon}
+\title{Get id of the parent of some taxa}
 \usage{
-parent(id, taxo)
+parent(taxon_ids, taxo)
 
-parents(id, taxo)
+parents(taxon_ids, taxo)
 }
 \arguments{
-\item{id}{numerical ids of taxonomic classes (typically a single one)}
+\item{taxon_ids}{internal, numeric ids of the taxa.}
 
-\item{taxo}{a taxonomy data.frame, typically from \code{\link{extract_taxo}}}
+\item{taxo}{a taxonomy data.frame, typically from \code{\link[=extract_taxo]{extract_taxo()}}.}
+}
+\value{
+A vector of taxon ids, as long as the input, containing the id of the parent of each element in the input.
 }
 \description{
-Get id of the parent of a taxon
+Get id of the parent of some taxa
+}
+\details{
+\code{parent} and \code{parents} are just synonyms. The function works per taxon but is vectorised over \code{taxon_ids}.
 }
 \examples{
-data(taxo)
+print(as.Node(taxo), "id")
 parent(3, taxo)
 parent(1:4, taxo)
 parent(c(5, NA), taxo)
+\dontrun{ parent(12, taxo) }
 }
 \seealso{
 Other taxonomy-related functions: 
