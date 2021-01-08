@@ -424,12 +424,12 @@ taxo_name <- function(taxon_ids, taxo, unique=FALSE) {
 #' taxo
 #' taxo_id("squid", taxo)
 #' taxo_id("foo", taxo)
-#' NB:
+#' # NB:
 #' taxo_id("egg", taxo)
 #' @export
 #' @family taxonomy-related functions
 taxo_id <- function(taxon_names, taxo) {
-  taxo$id[match(names, taxo$name)]
+  taxo$id[match(taxon_names, taxo$name)]
   # TODO need to deal with synonyms here
 }
 

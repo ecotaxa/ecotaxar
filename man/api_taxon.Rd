@@ -21,7 +21,7 @@ A list containing
 Get information about a single taxon
 }
 \examples{
-api_taxon(id=1234)
-api_taxon(id=85004)
-api_taxon(id=84968)
+api_taxon(1234)
+api_taxon(85004)
+api_taxon(84968)
 }

@@ -27,10 +27,14 @@ api_del_user_preference(project_id, key)
 \description{
 Get, set, or erase a preference for the currently authenticated user (i.e. you) in a project.
 }
+\details{
+Note that currently setting or deleting preferences does not work
+}
 \examples{
 # get preference
 api_get_user_preference(185, "cwd")
 
+\dontrun{
 # set preference and verify it
 api_get_user_preference(185, key="foo")
 api_set_user_preference(185, key="foo", value="test")
@@ -39,7 +43,7 @@ api_get_user_preference(185, key="foo")
 # delete preference
 api_del_user_preference(185, key="foo")
 api_get_user_preference(185, key="foo")
-
+}
 }
 \seealso{
 Other users: 

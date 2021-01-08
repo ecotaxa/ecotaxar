@@ -21,7 +21,7 @@ Get the ids of taxa from their names
 taxo
 taxo_id("squid", taxo)
 taxo_id("foo", taxo)
-NB:
+# NB:
 taxo_id("egg", taxo)
 }
 \seealso{

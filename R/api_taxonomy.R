@@ -8,9 +8,9 @@
 #' - `lineage` : a vector of the taxon name and its ancestors, in order of ascendance.
 #' @export
 #' @examples
-#' api_taxon(id=1234)
-#' api_taxon(id=85004)
-#' api_taxon(id=84968)
+#' api_taxon(1234)
+#' api_taxon(85004)
+#' api_taxon(84968)
 api_taxon <- function(taxon_id) {
   # check the argument
   checkmate::assert_scalar(taxon_id)

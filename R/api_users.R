@@ -41,10 +41,14 @@ api_users_me <- function() {
 #' - `mru`: the list of taxonomic categories "most recently used" in this project. This list is used in the autocompletion of categories in the classification page.
 #' @param value the value of the preference, when setting it.
 #'
+#' @details Note that currently setting or deleting preferences does not work
+# TODO fix this, pb of proxy on the server
+#'
 #' @examples
 #' # get preference
 #' api_get_user_preference(185, "cwd")
 #'
+#' \dontrun{
 #' # set preference and verify it
 #' api_get_user_preference(185, key="foo")
 #' api_set_user_preference(185, key="foo", value="test")
@@ -53,7 +57,7 @@ api_users_me <- function() {
 #' # delete preference
 #' api_del_user_preference(185, key="foo")
 #' api_get_user_preference(185, key="foo")
-#'
+#' }
 #' @family users
 #' @name api_user_preference
 NULL
