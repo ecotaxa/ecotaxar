@@ -1,7 +1,7 @@
 Package: ecotaxar
 Type: Package
 Title: Read Information From EcoTaxa
-Version: 0.1.0
+Version: 0.2.0
 Author: Jean-Olivier Irisson
 Maintainer: Jean-Olivier Irisson <irisson@normalesup.org>
 Description: This package allows to query and post-process data from the databases created by EcoTaxa.
