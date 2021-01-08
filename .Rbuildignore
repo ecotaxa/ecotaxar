@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 man-roxygen
 stuff
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
