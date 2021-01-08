@@ -28,6 +28,7 @@ api_users_me()
 }
 \seealso{
 Other users: 
+\code{\link{api_user_preference}},
 \code{\link{api_users_search}()},
 \code{\link{api_user}()}
 }
