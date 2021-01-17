@@ -39,6 +39,37 @@ api_handle_response <- function(x) {
 }
 
 
+#' Build a query with parameters
+#'
+#' @param ... named arguments to be turned into query parameters.
+#'
+#' @examples
+#' query_string(foo="a", bar=NULL, bob=1)
+query_string <- function(...) {
+  params <- list(...)
+  # check
+  if (any(names(params) == "")) {
+    stop("Query parameters must have names")
+  }
+  pieces <- sapply(names(params), function(key) {
+    val <- params[[key]]
+    # TODO deal with vector values
+    if (is.null(val)) {
+      # null parameters are not in the query
+      piece <- NA
+    } else {
+      # build this piece of the query
+      piece <- str_c(key, "=", val)
+    }
+    return(piece)
+  })
+  # remove NULL parameters
+  pieces <- na.omit(pieces)
+  # combine pieces
+  query <- str_c("?", str_c(pieces, collapse="&"))
+  return(query)
+}
+
 ## Internal shortcuts to the various http methods  ----
 
 apiGET <- function(endpoint) {
