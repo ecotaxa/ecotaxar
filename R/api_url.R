@@ -72,3 +72,14 @@ apiPOST <- function(endpoint, body) {
     )
   )
 }
+
+apiDELETE <- function(endpoint, body=NULL) {
+  api_handle_response(
+    httr::DELETE(
+      url=str_c(api_url(), endpoint),
+      config=httr::config(ssl_verifypeer=FALSE),
+      body=body, encode="json",
+      httr::add_headers(Authorization=str_c("Bearer ", api_token()))
+    )
+  )
+}
