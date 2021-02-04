@@ -31,6 +31,8 @@ api_projects_filter("through the API")
 \seealso{
 Other projects: 
 \code{\link{api_project_create}()},
-\code{\link{api_projects_filter}()}
+\code{\link{api_project_update}()},
+\code{\link{api_projects_filter}()},
+\code{\link{api_project}()}
 }
 \concept{projects}

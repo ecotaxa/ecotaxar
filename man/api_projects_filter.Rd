@@ -37,6 +37,8 @@ api_projects_filter(instrument="zooscan", include_all=TRUE)
 \seealso{
 Other projects: 
 \code{\link{api_project_create}()},
-\code{\link{api_project_delete}()}
+\code{\link{api_project_delete}()},
+\code{\link{api_project_update}()},
+\code{\link{api_project}()}
 }
 \concept{projects}

@@ -31,6 +31,47 @@ api_projects_filter <- function(title=NULL, instrument=NULL, with_manager_role=F
   # TODO check why I am getting a data.frame back
 }
 
+
+#' Get information for a project
+#'
+#' @template param-project_id
+#'
+#' @return A list describing the properties of the project.
+#'
+#' @family projects
+#' @export
+#' @examples
+#' api_project(185)
+api_project <- function(project_id) {
+  apiGET(str_c("projects/",project_id))
+}
+
+
+#' Update information for a project
+#'
+#' @template param-project_id
+#' @param info a list describing the properties of the project, formatted exactly as the output of api_project().
+#'
+#' @return NULL upon success.
+#'
+#' @family projects
+#' @export
+#' @examples
+#' i <- api_project(185)
+#' i$comments
+#' # change comment and update
+#' i$comments <- "This is a test comment"
+#' api_project_update(185, i)
+#' # check that the comment is changed
+#' api_project(185)$comments
+#' # change it back to something else
+#' i$comments <- "No comment"
+#' api_project_update(185, i)
+api_project_update <- function(project_id, info) {
+    apiPUT(str_c("projects/",project_id), body=info)
+}
+
+
 #' Create a project
 #'
 #' Create a project and become manager of it. This is reserved to users with the permission to create projects; this is not the case of the default API user, for security reasons.
