@@ -1,4 +1,4 @@
-#' List EcoTaxa users
+#' List all EcoTaxa users
 #'
 #' NB: This function is accessible to application administrators only. Use `[api_users_search()]` as an alternative.
 #'
@@ -13,20 +13,20 @@
 #' - `usercreationreason`: paragraph describing the usage of EcoTaxa made by the user.
 #'
 #' @export
-api_users <- function() {
+api_get_users <- function() {
   apiGET("users")
 }
 
 
 #' Get information about the currently authenticated user (i.e. you)
 #'
-#' @inherit api_users return
+#' @inherit api_get_users return
 #'
 #' @family users
 #' @export
 #' @examples
-#' api_users_me()
-api_users_me <- function() {
+#' api_get_me()
+api_get_me <- function() {
   apiGET("users/me")
 }
 
@@ -46,39 +46,39 @@ api_users_me <- function() {
 #'
 #' @examples
 #' # get preference
-#' api_get_user_preference(185, "cwd")
+#' api_get_my_preference(185, "cwd")
 #'
 #' \dontrun{
 #' # set preference and verify it
-#' api_get_user_preference(185, key="foo")
-#' api_set_user_preference(185, key="foo", value="test")
-#' api_get_user_preference(185, key="foo")
+#' api_get_my_preference(185, key="foo")
+#' api_set_my_preference(185, key="foo", value="test")
+#' api_get_my_preference(185, key="foo")
 #'
 #' # delete preference
-#' api_del_user_preference(185, key="foo")
-#' api_get_user_preference(185, key="foo")
+#' api_del_my_preference(185, key="foo")
+#' api_get_my_preference(185, key="foo")
 #' }
 #' @family users
-#' @name api_user_preference
+#' @name api_user_preferences
 NULL
 
-#' @rdname api_user_preference
+#' @rdname api_user_preferences
 #' @export
-api_get_user_preference <- function(project_id, key) {
+api_get_my_preference <- function(project_id, key) {
   checkmate::assert_string(key)
   apiGET(stringr::str_c("users/my_preferences/", project_id, "?key=", key))
 }
 
-#' @rdname api_user_preference
+#' @rdname api_user_preferences
 #' @export
-api_set_user_preference <- function(project_id, key, value) {
+api_set_my_preference <- function(project_id, key, value) {
   checkmate::assert_string(key)
   apiPUT(stringr::str_c("users/my_preferences/", project_id, "?key=", key, "&value=", value), body=NULL)
 }
 
-#' @rdname api_user_preference
+#' @rdname api_user_preferences
 #' @export
-api_del_user_preference <- function(project_id, key) {
+api_del_my_preference <- function(project_id, key) {
   checkmate::assert_string(key)
   apiPUT(stringr::str_c("users/my_preferences/", project_id, "?key=", key, "&value="), body=NULL)
 }
@@ -88,13 +88,13 @@ api_del_user_preference <- function(project_id, key) {
 #'
 #' @param name string to look for in the user name
 #'
-#' @inherit api_users return
+#' @inherit api_get_users return
 #'
 #' @family users
 #' @export
 #' @examples
-#' api_users_search("api")
-api_users_search <- function(name) {
+#' api_search_users("api")
+api_search_users <- function(name) {
   apiGET(str_c("users/search?by_name=%", name, "%"))
 }
 
@@ -103,13 +103,13 @@ api_users_search <- function(name) {
 #'
 #' @param user_id internal, numeric id of the user.
 #'
-#' @inherit api_users return
+#' @inherit api_get_users return
 #'
 #' @family users
 #' @export
 #' @examples
-#' api_user(993)
-api_user <- function(user_id) {
+#' api_get_user(993)
+api_get_user <- function(user_id) {
   apiGET(str_c("users/", user_id))
 }
 
