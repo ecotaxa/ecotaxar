@@ -68,7 +68,7 @@ api_project <- function(project_id) {
 #' i$comments <- "No comment"
 #' api_project_update(185, i)
 api_project_update <- function(project_id, info) {
-    apiPUT(str_c("projects/",project_id), body=info)
+  apiPUT(str_c("projects/",project_id), body=info)
 }
 
 
