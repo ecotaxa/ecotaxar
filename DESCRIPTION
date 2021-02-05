@@ -20,7 +20,8 @@ Imports:
 	readr,
 	purrr,
 	httr,
-	checkmate
+	checkmate,
+	jsonlite
 Depends:
   R (>= 2.10),
 	dplyr (>= 0.7.1)

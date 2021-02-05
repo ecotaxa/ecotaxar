@@ -83,22 +83,28 @@ apiGET <- function(endpoint) {
 }
 
 apiPUT <- function(endpoint, body) {
+  # convert body to json ourselves, to control the settings
+  # this is based on the httr defaults with some additions
+  body_json <- jsonlite::toJSON(body, auto_unbox=TRUE, digits=22, null="null")
   api_handle_response(
     httr::PUT(
       url=str_c(api_url(), endpoint),
       config=httr::config(ssl_verifypeer=FALSE),
-      body=body, encode="json",
+      body=body_json, encode="raw",
       httr::add_headers(Authorization=str_c("Bearer ", api_token()))
     )
   )
 }
 
 apiPOST <- function(endpoint, body) {
+  # convert body to json ourselves, to control the settings
+  # this is based on the httr defaults with some additions
+  body_json <- jsonlite::toJSON(body, auto_unbox=TRUE, digits=22, null="null")
   api_handle_response(
     httr::POST(
       url=str_c(api_url(), endpoint),
       config=httr::config(ssl_verifypeer=FALSE),
-      body=body, encode="json",
+      body=body_json, encode="raw",
       httr::add_headers(Authorization=str_c("Bearer ", api_token()))
     )
   )
