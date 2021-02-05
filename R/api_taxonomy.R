@@ -16,6 +16,5 @@ api_taxon <- function(taxon_id) {
   checkmate::assert_scalar(taxon_id)
   checkmate::assert_integerish(taxon_id)
   # get the info
-  apiGET(str_c("taxa/", taxon_id))
-  # TODO change once the endpoint matches the name here
+  apiGET(str_c("taxon/", taxon_id))
 }
