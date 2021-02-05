@@ -8,28 +8,28 @@
 #' \item \code{classif_id}: numeric ids of the taxa of interest,
 #' \item \code{sampleid}: internal numeric identifiers of the samples (from the "samples" table).
 #' }
-#' @param *_fields vectors of column names to extract in the objects, sample, acquisitions, and process tables. NULL (the default) extracts nothing, "all" extracts all fields.
+#' @param object_fields,process_fields,acquis_fields,sample_fields vectors of column names to extract in the objects, sample, acquisitions, and process tables. NULL (the default) extracts nothing, "all" extracts all fields.
 #'
 #' @return A tibble with columns that are systematically extracted and the additional metadata requested
 #'
 #' @export
 #'
 #' @examples
-#' db <- db_connect_ecotaxa()
-#' # extract validated objects from a couple projects with some metadata
-#' d <- extract_objects(
-#'   db, projids=c(658, 756), classif_qual=="V",
-#'   object_fields=c("area", "major"),
-#'   process_fields="particle_pixel_size_mm",
-#'   acquis_fields="sub_part",
-#'   sample_fields="tot_vol"
-#' )
-#' # extract all objects from a project with all object-level metadata
-#' d <- extract_objects(
-#'   db, projids=658,
-#'   object_fields="all"
-#' )
-db_objects <- function(db, projids, ..., object_fields=NULL, process_fields=NULL, acquis_fields=NULL, sample_fields=NULL) {
+#' # db <- db_connect_ecotaxa()
+#' # # extract validated objects from a couple projects with some metadata
+#' # d <- db_extract(
+#' #   db, projids=c(658, 756), classif_qual=="V",
+#' #   object_fields=c("area", "major"),
+#' #   process_fields="particle_pixel_size_mm",
+#' #   acquis_fields="sub_part",
+#' #   sample_fields="tot_vol"
+#' # )
+#' # # extract all objects from a project with all object-level metadata
+#' # d <- db_extract(
+#' #   db, projids=658,
+#' #   object_fields="all"
+#' # )
+db_extract <- function(db, projids, ..., object_fields=NULL, process_fields=NULL, acquis_fields=NULL, sample_fields=NULL) {
 
   # Reduce a mapping to the specified fields
   # @param mapping EcoTaxa mapping string
@@ -128,7 +128,7 @@ db_objects <- function(db, projids, ..., object_fields=NULL, process_fields=NULL
     }
 
     return(collect(o, n=3))
-  }, .progress="text")
+  })
 
   # convert text-as-number columns
   # Convert a vector of strings storing numbers into actual numbers
