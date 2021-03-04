@@ -7,7 +7,7 @@
 \alias{db_disconnect}
 \title{Database connection to EcoTaxa}
 \usage{
-db_connect_ecotaxa()
+db_connect_ecotaxa(host = NULL, dbname = NULL, user = NULL, password = NULL)
 
 db_disconnect_ecotaxa(x)
 
@@ -16,13 +16,21 @@ src_ecotaxa()
 db_disconnect(x)
 }
 \arguments{
+\item{host}{URL of the machine hosting EcoTaxa; when NULL, the default, the function will try the URLs of the various hosts in domain obs-vlfr.fr.}
+
+\item{dbname}{name of the database to connect to.}
+
+\item{user}{name of a user that has read-only access to the database.}
+
+\item{password}{password of that user.}
+
 \item{x}{a database connection created by \code{\link[=db_connect_ecotaxa]{db_connect_ecotaxa()}}.}
 }
 \value{
 An object of class \code{\link[RPostgreSQL:PostgreSQLConnection-class]{RPostgreSQL::PostgreSQLConnection-class()}}.
 }
 \description{
-Connect to and disconnect from the EcoTaxa database (in read-only mode).
+Connect to and disconnect from the EcoTaxa database (in read-only mode and only from the local network of the machine running EcoTaxa).
 }
 \examples{
 db <- db_connect_ecotaxa()
