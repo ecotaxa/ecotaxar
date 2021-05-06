@@ -16,7 +16,6 @@
 api_login <- function(username, password, cache=TRUE) {
   response <- httr::POST(
     url=str_c(api_url(), "login"),
-    config=httr::config(ssl_verifypeer=FALSE),
     body=list(username=username, password=password),
     encode="json"
   )
