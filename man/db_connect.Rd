@@ -10,7 +10,7 @@
 \alias{src_ecotaxa}
 \title{Database connection to EcoTaxa}
 \usage{
-db_connect(host = NULL, dbname = NULL, user = NULL, password = NULL)
+db_connect(host = NULL, dbname = NULL, user = NULL, password = NULL, ...)
 
 db_connect_ecotaxa(...)
 
@@ -33,7 +33,7 @@ src_ecotaxa()
 
 \item{password}{password of that user.}
 
-\item{...}{passed through arguments (currently ignored).}
+\item{...}{passed to \code{\link[DBI:dbConnect]{DBI::dbConnect()}} for a PostgreSQL connection.}
 
 \item{x}{a database connection created by \code{\link[=db_connect_ecotaxa]{db_connect_ecotaxa()}}.}
 }

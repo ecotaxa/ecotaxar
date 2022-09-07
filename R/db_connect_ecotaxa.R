@@ -7,7 +7,7 @@
 #' @param user name of a user that has read-only access to the database.
 #' @param password password of that user.
 #' @param x a database connection created by [db_connect_ecotaxa()].
-#' @param ... passed through arguments (currently ignored).
+#' @param ... passed to [DBI::dbConnect()] for a PostgreSQL connection.
 #'
 #' @return An object of class [RPostgreSQL::PostgreSQLConnection-class()].
 #' @export
@@ -17,8 +17,8 @@
 #' db
 #' db_disconnect_ecotaxa(db)
 #' # NB: always disconnect after use. Leaving open connections clobbers the server
-db_connect <- function(host=NULL, dbname=NULL, user=NULL, password=NULL) {
-  db <- RPostgreSQL::dbConnect("PostgreSQL", host=host, dbname=dbname, user=user, password=password)
+db_connect <- function(host=NULL, dbname=NULL, user=NULL, password=NULL, ...) {
+  db <- RPostgreSQL::dbConnect("PostgreSQL", host=host, dbname=dbname, user=user, password=password, ...)
   return(db)
 }
 
@@ -29,14 +29,14 @@ db_connect_ecotaxa <- function(...) {
   # try the usual Villefranche URLs
   # start by the mirror on niko
   tryCatch(
-    db <- db_connect(host="niko.obs-vlfr.fr", dbname="ecotaxa3", user="zoo", password="z004ecot@x@"),
+    db <- db_connect(host="niko.obs-vlfr.fr", dbname="ecotaxa3", user="zoo", password="z004ecot@x@", ...),
     error=function(e) {
       warning("Database copy on niko unaccessible, falling back on the original one", call.=FALSE)
     }
   )
   # then fall back on the original database
   if (is.null(db)) {
-    db_connect(host="ecotaxa.obs-vlfr.fr", dbname="ecotaxa", user="zoo", password="z004ecot@x@")
+    db <- db_connect(host="ecotaxa.obs-vlfr.fr", dbname="ecotaxa", user="zoo", password="z004ecot@x@", ...)
   }
   return(db)
 }
@@ -44,7 +44,7 @@ db_connect_ecotaxa <- function(...) {
 #' @rdname db_connect
 #' @export
 db_connect_ecopart <- function(...) {
-  db_connect(host="ecotaxa.obs-vlfr.fr", dbname="ecopart", user="zoo", password="z004ecot@x@")
+  db <- db_connect(host="ecotaxa.obs-vlfr.fr", dbname="ecopart", user="zoo", password="z004ecot@x@", ...)
   return(db)
 }
 
