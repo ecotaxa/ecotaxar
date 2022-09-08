@@ -25,19 +25,19 @@ db_connect <- function(host=NULL, dbname=NULL, user=NULL, password=NULL, ...) {
 #' @rdname db_connect
 #' @export
 db_connect_ecotaxa <- function(...) {
-  db <- NULL
-  # try the usual Villefranche URLs
-  # start by the mirror on niko
-  tryCatch(
-    db <- db_connect(host="niko.obs-vlfr.fr", dbname="ecotaxa3", user="zoo", password="z004ecot@x@", ...),
-    error=function(e) {
-      warning("Database copy on niko unaccessible, falling back on the original one", call.=FALSE)
-    }
-  )
-  # then fall back on the original database
-  if (is.null(db)) {
+  # db <- NULL
+  # # try the usual Villefranche URLs
+  # # start by the mirror on niko
+  # tryCatch(
+  #   db <- db_connect(host="niko.obs-vlfr.fr", dbname="ecotaxa3", user="zoo", password="z004ecot@x@", ...),
+  #   error=function(e) {
+  #     warning("Database copy on niko unaccessible, falling back on the original one", call.=FALSE)
+  #   }
+  # )
+  # # then fall back on the original database
+  # if (is.null(db)) {
     db <- db_connect(host="ecotaxa.obs-vlfr.fr", dbname="ecotaxa", user="zoo", password="z004ecot@x@", ...)
-  }
+  # }
   return(db)
 }
 
