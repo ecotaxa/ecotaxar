@@ -6,10 +6,10 @@
 #' @param dbname name of the database to connect to.
 #' @param user name of a user that has read-only access to the database.
 #' @param password password of that user.
-#' @param x a database connection created by [db_connect_ecotaxa()].
+#' @param x a database connection created by [db_connect()].
 #' @param ... passed to [DBI::dbConnect()] for a PostgreSQL connection.
 #'
-#' @return An object of class [RPostgreSQL::PostgreSQLConnection-class()].
+#' @return An object of class RPostgres::PqConnection.
 #' @export
 #'
 #' @examples
@@ -18,7 +18,7 @@
 #' db_disconnect_ecotaxa(db)
 #' # NB: always disconnect after use. Leaving open connections clobbers the server
 db_connect <- function(host=NULL, dbname=NULL, user=NULL, password=NULL, ...) {
-  db <- RPostgreSQL::dbConnect("PostgreSQL", host=host, dbname=dbname, user=user, password=password, ...)
+  db <- RPostgres::dbConnect(RPostgres::Postgres(), host=host, dbname=dbname, user=user, password=password, ...)
   return(db)
 }
 
@@ -51,19 +51,19 @@ db_connect_ecopart <- function(...) {
 # Define a print method for a connection object
 methods::setMethod(
   f = "show",
-  signature = "PostgreSQLConnection",
+  signature = "PqConnection",
   definition = function(object){
-    tables <- RPostgreSQL::dbListTables(object)
+    tables <- RPostgres::dbListTables(object)
     tables <- sort(tables)
     tables <- str_c(tables, collapse=", ")
-    cat("tbls:", tables)
+    cat(RPostgres:::format.PqConnection(object), "\ntbls:", tables)
   }
 )
 
 #' @rdname db_connect
 #' @export
 db_disconnect <- function(x) {
-  RPostgreSQL::dbDisconnect(x)
+  RPostgres::dbDisconnect(x)
 }
 #' @rdname db_connect
 #' @export
