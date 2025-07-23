@@ -36,7 +36,7 @@ db_connect_ecotaxa <- function(...) {
   # )
   # # then fall back on the original database
   # if (is.null(db)) {
-    db <- db_connect(host="ecotaxa.obs-vlfr.fr", dbname="ecotaxa", user="zoo", password="z004ecot@x@", ...)
+    db <- db_connect(host="newecotaxa.obs-vlfr.fr", dbname="ecotaxa", user="zoo", password="z004ecot@x@", ...)
   # }
   return(db)
 }
@@ -44,7 +44,7 @@ db_connect_ecotaxa <- function(...) {
 #' @rdname db_connect
 #' @export
 db_connect_ecopart <- function(...) {
-  db <- db_connect(host="ecotaxa.obs-vlfr.fr", dbname="ecopart", user="zoo", password="z004ecot@x@", port=5435, ...)
+  db <- db_connect(host="newecotaxa.obs-vlfr.fr", dbname="ecopart", user="zoo", password="z004ecot@x@", port=5435, ...)
   return(db)
 }
 
