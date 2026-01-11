@@ -35,7 +35,7 @@ src_ecotaxa()
 
 \item{...}{passed to \code{\link[DBI:dbConnect]{DBI::dbConnect()}} for a PostgreSQL connection.}
 
-\item{x}{a database connection created by \code{\link[=db_connect_ecotaxa]{db_connect_ecotaxa()}}.}
+\item{x}{a database connection created by \code{\link[=db_connect]{db_connect()}}.}
 }
 \value{
 An object of class \code{\link[RPostgreSQL:PostgreSQLConnection-class]{RPostgreSQL::PostgreSQLConnection-class()}}.
