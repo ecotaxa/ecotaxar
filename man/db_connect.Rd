@@ -38,7 +38,7 @@ src_ecotaxa()
 \item{x}{a database connection created by \code{\link[=db_connect]{db_connect()}}.}
 }
 \value{
-An object of class \code{\link[RPostgreSQL:PostgreSQLConnection-class]{RPostgreSQL::PostgreSQLConnection-class()}}.
+An object of class RPostgres::PqConnection.
 }
 \description{
 Connect to and disconnect from the EcoTaxa database (in read-only mode and only from the local network of the machine running EcoTaxa).
