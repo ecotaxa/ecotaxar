@@ -382,7 +382,7 @@ lineage <- function(taxon_ids, taxo, rooted=FALSE) {
 #' Get the names of taxa from their ids
 #'
 #' @inheritParams parent
-#' @param unique force names to be unique by adding the parent name when needed.
+#' @param unique force names to be unique by adding the ancestors name when needed.
 #'
 #' @return A vector names, one for each element of `taxon_ids`.
 #'
@@ -397,16 +397,31 @@ taxo_name <- function(taxon_ids, taxo, unique=FALSE) {
   # reduce to unique ids to be faster and able to detect duplicated names
   uid <- unique(taxon_ids)
 
-  if (unique) {
-    names <- taxo_name(uid, taxo)
-    parent_names <- uid %>% parent(taxo) %>% taxo_name(taxo)
+  # get names
+  names <- taxo$name[match(uid, taxo$id)]
 
-    # for duplicated names, add the name of the parent
-    dup_idx <- which(duplicated(names) | duplicated(names, fromLast=T))
-    names[dup_idx] <- stringr::str_c(names[dup_idx], "<", parent_names[dup_idx])
-    # TODO this does not solve the problem of non-unique parent-child couples but it does not seem to exist currently
-  } else {
-    names <- taxo$name[match(uid, taxo$id)]
+  if (unique) {
+    # start deduplicating using level 1 ancestors (=parents)
+    n <- 1
+    while (any(duplicated(names))) {
+      # get *indexes* (not ids) corresponding to duplicated names
+      dup <- duplicated(names)
+      dup_idx <- which(names %in% names[dup])
+      # for all taxa with duplicated names
+      dup_ids <- uid[dup_idx]
+      names[dup_idx] <- sapply(dup_ids, function(i) {
+        # get ancestors
+        anc <- ancestors(i, taxo, n=n) |> rev()
+        # concatenate their names as the current name
+        taxo_name(anc, taxo, unique=FALSE) |> paste0(collapse="<")
+      })
+      n <- n+1
+      # add a safeguard
+      if (n > 30) {
+        warning("Abort deduplication in taxo_name()")
+        break
+      }
+    }
   }
 
   # extract the names of all ids

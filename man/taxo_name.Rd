@@ -11,7 +11,7 @@ taxo_name(taxon_ids, taxo, unique = FALSE)
 
 \item{taxo}{a taxonomy data.frame, typically from \code{\link[=extract_taxo]{extract_taxo()}}.}
 
-\item{unique}{force names to be unique by adding the parent name when needed.}
+\item{unique}{force names to be unique by adding the ancestors name when needed.}
 }
 \value{
 A vector names, one for each element of \code{taxon_ids}.
