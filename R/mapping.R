@@ -11,6 +11,9 @@
 #' mapping <- "n01=area\nn02=mean\nn03=stddev"
 #' map_names(d, mapping)
 #' parse_mapping(mapping)
+#' mapping <- "{\"area\": \"n01\", \"mean\": \"n02\", \"stddev\": \"n03\"}"
+#' map_names(d, mapping)
+#' parse_mapping(mapping)
 map_names <- function(x, mapping) {
   # parse mapping
   mapping <- parse_mapping(mapping)
@@ -25,10 +28,17 @@ map_names <- function(x, mapping) {
 #' @export
 parse_mapping <- function(mapping) {
   # reformat mapping for dplyr::rename
-  mapping <- stringr::str_split(mapping, "\n|=")[[1]]
-  mapping_names <- mapping[seq(2, length(mapping), by=2)]
-  mapping <- mapping[seq(1, length(mapping), by=2)]
-  names(mapping) <- mapping_names
+  if (stringr::str_sub(mapping,1,1) == "{") {
+    # new format = JSON
+    mapping <- jsonlite::fromJSON(mapping)
+    mapping <- unlist(mapping)
+  } else {
+    # old format = text
+    mapping <- stringr::str_split(mapping, "\n|=")[[1]]
+    mapping_names <- mapping[seq(2, length(mapping), by=2)]
+    mapping <- mapping[seq(1, length(mapping), by=2)]
+    names(mapping) <- mapping_names
+  }
   return(mapping)
 }
 
